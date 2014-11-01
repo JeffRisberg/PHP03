@@ -50,9 +50,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-1"></div>
-
-    <div class="col-md-3" style="background-color: #99CC66; padding: 5px">
+    <div class="col-md-3 col-md-offset-1" style="background-color: #91A5F2; padding: 5px">
         <h3>We offer your favorites</h3>
 
         <p>Your choice of skins!</p>
@@ -66,9 +64,7 @@
             id, no agam paulo integre duo. Eu malis phaedrum pri. An nam quaeque repudiandae philosophia.</p>
     </div>
 
-    <div class="col-md-1"></div>
-
-    <div class="col-md-6" style="background-color: #99CC66; padding: 5px">
+    <div class="col-md-6 col-md-offset-1" style="background-color: #91A5F2; padding: 5px">
         <h3>All skins are battle-tested and league-approved!</h3>
 
         <p>Cu vidit falli sed, cibo sale errem ne duo, sea nonumy civibus indoctum ea. At odio mediocrem pro, meis
