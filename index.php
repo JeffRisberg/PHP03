@@ -1,7 +1,11 @@
 <?php include '_header.php'; ?>
 
+<!--
+ There is nothing clever about this code -- it is copied exactly from the example in the Twitter Bootstrap
+ developer notes at http://getbootstrap.com/javascript/#carousel
+ -->
 <div id="main-carousel" class="carousel slide" data-ride="carousel"
-     style="width:800px; height: 120px; margin: 0px auto">
+     style="width:800px; height: 120px; margin: 0 auto">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
