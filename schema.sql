@@ -1,5 +1,19 @@
 drop table if exists users;
 drop table if exists skin_types;
+drop table if exists champions;
+
+create table champions (
+	id           int(11)      NOT NULL AUTO_INCREMENT,
+	name         varchar(255) NOT NULL,
+	role         varchar(255) NOT NULL,
+	splash_img_url      varchar(255) NULL,
+	date_created datetime     NOT NULL,
+  last_updated datetime     NOT NULL,
+	PRIMARY KEY (id)
+)
+	ENGINE =InnoDB
+	DEFAULT CHARSET =latin1
+	AUTO_INCREMENT =1;
 
 create table skin_types (
 	id           int(11)      NOT NULL AUTO_INCREMENT,
@@ -24,6 +38,12 @@ create table users (
   ENGINE =InnoDB
   DEFAULT CHARSET =latin1
   AUTO_INCREMENT =1;
+
+insert into champions (name, role, splash_img_url, date_created, last_updated) values ('Nocturn', 'Assassin', 'skin1.gif', now(), now());
+insert into champions (name, role, splash_img_url, date_created, last_updated) values ('Morgana', 'Mage', 'skin2.gif', now(), now());
+insert into champions (name, role, splash_img_url, date_created, last_updated) values ('Ashe', 'Marksman', 'skin3.gif', now(), now());
+insert into champions (name, role, splash_img_url, date_created, last_updated) values ('Gankplank', 'Jungler', 'skin4.gif', now(), now());
+
 
 insert into skin_types (name, img_url, date_created, last_updated) values ('Alpha', 'skin1.gif', now(), now());
 insert into skin_types (name, img_url, date_created, last_updated) values ('Beta', 'skin2.gif', now(), now());
