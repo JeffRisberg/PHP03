@@ -5,6 +5,7 @@
  * Date: 11/19/2014
  * Time: 4:39 PM
  */
+require('_connect.php');
 
 $button = $_POST['Button'];
 $modelname = '';
@@ -13,26 +14,20 @@ $action = '';
 
 if ( $button == 'Change' ) {
     //Display the add title
-    echo '<h2>Select a Model to Change</h2>';
+    echo '<h2>Select a Champion to Change</h2>';
     $type='radio';
-    $action='addchangemodel.php';
+    $action='champion_addchange.php';
 } else {
     //Display the change title
-    echo '<h2>Select Models to Delete</h2>';
+    echo '<h2>Select Champions to Delete</h2>';
     $type = 'checkbox';
-    $action = 'deletemodel.php';
-}
-$db = mysqli_connect( 'uscitp.com', '?', '?', 'mike_car');
-
-if ( mysqli_connect_errno() != 0 ) {
-    //There was an error connecting to the database
-    die("Error connecting to the database. The error is: " . mysqli_connect_error());
+    $action = 'champion_delete.php';
 }
 
 //Create the SQL INSERT statement
-$sql = 'select * from model';
+$sql = 'select * from champions';
 
-$result = mysqli_query( $db, $sql );
+$result = mysqli_query( $db_connection, $sql );
 if ( !$result ) {
     die( 'Model query failed. Error is: ' . mysqli_error($db) );
 }
@@ -44,13 +39,13 @@ echo '<form method="POST" action="' . $action . '">';
 
 while ( $row = mysqli_fetch_array( $result) ) {
     echo '<p><input name="model[]" type="' . $type . '" value="'.
-        $row['model_id'] . '"/>' . $row['model_name'] . '</p>';
+        $row['model_id'] . '"/>' . $row['name'] . '</p>';
 }
 
 if ( $button == 'Delete' ) {
-    echo '<input type="submit" name="Button" value="Delete Models"/>';
+    echo '<input type="submit" name="Button" value="Delete Champions"/>';
 } else {
-    echo '<input type="submit" name="Button" value="Select Model"/>';
+    echo '<input type="submit" name="Button" value="Select Champion"/>';
 }
 ?>
 </form>
