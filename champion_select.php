@@ -39,7 +39,7 @@ echo '<form method="POST" action="' . $action . '">';
 
 while ( $row = mysqli_fetch_array( $result) ) {
     echo '<p><input name="model[]" type="' . $type . '" value="'.
-        $row['model_id'] . '"/>' . $row['name'] . '</p>';
+        $row['id'] . '"/>' . $row['name'] . ' : ' . $row['role'] . '</p>';
 }
 
 if ( $button == 'Delete' ) {

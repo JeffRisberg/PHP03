@@ -31,6 +31,7 @@ if ( $button == 'Add' ) {
 
     $row = mysqli_fetch_array( $result );
     $modelname = $row['name'];
+    $role = $row['role'];
 }
 echo '<form action="champion_insert.php" method="POST">';
 echo '<p>Name: <input type="text" name="name" value="' . $modelname . '"/></p>';

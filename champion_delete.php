@@ -14,7 +14,7 @@ $numberOfModels = count($models);
 
 for ($i=0; $i<$numberOfModels; $i++ ) {
     //Generate the delete SQL statement using the model_id
-    $sql = 'delete from champions where model_id=' . $models[$i];
+    $sql = 'delete from champions where id=' . $models[$i];
     echo $sql;
 
     //Execute sql statement
