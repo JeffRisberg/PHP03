@@ -9,13 +9,13 @@ require('_connect.php');
 //require('_login.php');
 
 $button = $_POST['Button'];
-$model = $_POST['model'];  //Array of model_ids, only retrieves data from the change selection page
+$model = $_POST['model']; //Array of model_ids, only retrieves data from the change selection page
 
 $modelid = $model[0]; //Only one model_id will exist since we use radio buttons on the change selection page
 $modelname = '';
 $role = '';
 
-if ( $button == 'Add' ) {
+if ($button == 'Add') {
     //Display the add title
     echo '<h2>Add a New Champion</h2>';
 } else {
@@ -24,12 +24,12 @@ if ( $button == 'Add' ) {
 
     $sql = 'select * from champions where id=' . $modelid;
 
-    $result = mysqli_query( $db_connection, $sql );
-    if ( !$result ) {
-        die( 'Model query failed. Error is: ' . mysqli_error($db) );
+    $result = mysqli_query($db_connection, $sql);
+    if (!$result) {
+        die('Model query failed. Error is: ' . mysqli_error($db));
     }
 
-    $row = mysqli_fetch_array( $result );
+    $row = mysqli_fetch_array($result);
     $modelname = $row['name'];
     $role = $row['role'];
 }
@@ -38,11 +38,12 @@ echo '<p>Name: <input type="text" name="name" value="' . $modelname . '"/></p>';
 echo '<p>Role: <input type="text" name="role" value="' . $role . '"/></p>';
 
 //Add the submit button
-if ( $button == 'Add' ) {
+if ($button == 'Add') {
     //Display the add title
     echo '<input type="submit" name="Button" value="Add Champion"/>';
 } else {
-    echo '<input type="submit" name="Button" value="Change Champion"/>';
+    echo '<input type="submit" name="Button" value="Change Champion"/>'
+     echo '<input type="hidden" name="model_id" value=" model_id . "/>';
 }
 
 echo '</form>';
