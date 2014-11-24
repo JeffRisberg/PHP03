@@ -7,12 +7,11 @@
  */
 require('_connect.php');
 
-$model_id = $_POST['model_id'];
+$modelid = $_POST['modelid'];
 $name = $_POST['name'];
 $role = $_POST['role'];
 
-$sql = 'update champions set name=  .... where id=" . $_mode_id;
-values ("' . $name . '", "' . $role . '", now(), now());';
+$sql = 'update champions set name="' . $name . '", role="' . $role . '" where id=' . $modelid;
 
 //Mysqli code to connect to database and execute the query
 if (!$result = mysqli_query($db_connection, $sql)) {

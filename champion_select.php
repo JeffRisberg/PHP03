@@ -43,9 +43,9 @@ while ( $row = mysqli_fetch_array( $result) ) {
 }
 
 if ( $button == 'Delete' ) {
-    echo '<input type="submit" name="Button" value="Delete Champions"/>';
+    echo '<input type="submit" name="button" value="Delete Champions"/>';
 } else {
-    echo '<input type="submit" name="Button" value="Select Champion"/>';
+    echo '<input type="submit" name="button" value="Select Champion"/>';
 }
 ?>
 </form>
