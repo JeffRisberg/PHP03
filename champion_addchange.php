@@ -8,7 +8,7 @@
 require('_connect.php');
 //require('_login.php');
 
-$button = $_POST['Button'];
+$button = $_POST['button'];
 $model = $_POST['model']; //Array of model_ids, only retrieves data from the change selection page
 
 $modelid = $model[0]; //Only one model_id will exist since we use radio buttons on the change selection page
@@ -33,7 +33,12 @@ if ($button == 'Add') {
     $modelname = $row['name'];
     $role = $row['role'];
 }
-echo '<form action="champion_insert.php" method="POST">';
+if ($button == 'Add') {
+    echo '<form action="champion_insert.php" method="POST">';
+} else {
+    echo '<form action="champion_update.php" method="POST">';
+}
+
 echo '<p>Name: <input type="text" name="name" value="' . $modelname . '"/></p>';
 echo '<p>Role: <input type="text" name="role" value="' . $role . '"/></p>';
 

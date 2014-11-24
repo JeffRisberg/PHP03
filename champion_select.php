@@ -7,7 +7,7 @@
  */
 require('_connect.php');
 
-$button = $_POST['Button'];
+$button = $_POST['button'];
 $modelname = '';
 $type = '';
 $action = '';
