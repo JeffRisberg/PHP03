@@ -164,6 +164,8 @@ values (1, 2, now());
 
 insert into user_skin_wishlist (user_id, skin_id, date_created)
 values (1, 3, now());
+insert into user_skin_wishlist (user_id, skin_id, date_created)
+values (1, 1, now());
 
 insert into user_champion (user_id, champion_id, date_created)
-values (1, 3, now());
+values (1, 2, now());

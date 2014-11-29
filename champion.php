@@ -93,10 +93,12 @@ if ($wishlist_result->num_rows == 0) { $b_skin_wished = false;} else {$b_skin_wi
         ?>
     </div>
     <div style="margin-top: 15px">
-        <?php if (!$b_skin_wished)
-            echo '<button name="add-skin-wishlist" value="add_wishlist">Add to Wish List</button>';
-        else
-            echo '<button name="remove-skin-wishlist" value="remove_wishlist">Remove from Wish Lit</button>';
+        <?php if (!$b_skin_collected) {
+            if (!$b_skin_wished)
+                echo '<button name="add-skin-wishlist" value="add_wishlist">Add to Wish List</button>';
+            else
+                echo '<button name="remove-skin-wishlist" value="remove_wishlist">Remove from Wish Lit</button>';
+        }
         ?>
     </div>
 </div>
