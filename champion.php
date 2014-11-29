@@ -15,19 +15,52 @@ include 'css/_common_styles.php';
 
 $champion_id = $_GET['id'];
 
+//Select the skins for this champion
 $sql = <<<SQL
 SELECT * FROM skins
 WHERE champion_id=$champion_id
 ORDER BY date_created
 SQL;
 
-var_dump($sql);
-
-if (!$result = mysqli_query($db_connection, $sql)) {
+if (!$skin_result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
 }
 
-var_dump($result);
+//Check if the user has already favorited this champion
+$sql = <<<SQL
+SELECT * FROM user_champion
+WHERE champion_id=$champion_id AND user_id=$user_id
+SQL;
+
+if (!$champion_result = mysqli_query($db_connection, $sql)) {
+    die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+}
+
+if ($champion_result->num_rows == 0) { $b_champion_favorited = false;} else {$b_champion_favorited = true;}
+
+//Check if the user already owns this skin
+$sql = <<<SQL
+SELECT * FROM user_skin_collection
+WHERE skin_id=1 AND user_id=$user_id
+SQL;
+
+if (!$collection_result = mysqli_query($db_connection, $sql)) {
+    die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+}
+
+if ($collection_result->num_rows == 0) { $b_skin_collected = false;} else {$b_skin_collected = true;}
+
+//Check if the user already wants this skin
+$sql = <<<SQL
+SELECT * FROM user_skin_wishlist
+WHERE skin_id=1 AND user_id=$user_id
+SQL;
+
+if (!$wishlist_result = mysqli_query($db_connection, $sql)) {
+    die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+}
+
+if ($wishlist_result->num_rows == 0) { $b_skin_wished = false;} else {$b_skin_wished = true;}
 
 ?>
 
@@ -39,19 +72,31 @@ var_dump($result);
     <div style="margin-top: 50px">
         <select name="skin_select">
             <?php
-                while($row = $result->fetch_assoc()) {
-                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                while($skin_row = $skin_result->fetch_assoc()) {
+                    echo '<option value="' . $skin_row['id'] . '">' . $skin_row['name'] . '</option>';
                 }
             ?>
         </select>
     </div>
     <div style="margin-top: 100px">
-        <button name="add-fav-champ" value="Add to Favorite Champions">Add to Favorite Champions</button>
+        <?php if (!$b_champion_favorited)
+            echo '<button name="add-fav-champ" value="add_champion">Add Favorite Champion</button>';
+        else
+            echo '<button name="remove-fav-champ" value="remove_champion">Remove Favorite Champion</button>';
+        ?>
     </div>
     <div style="margin-top: 15px">
-        <button name="add-skin-collection" value="Add to Collection">Add to Collection</button>
+        <?php if (!$b_skin_collected)
+            echo '<button name="add-skin-collection" value="add_collection">Add to Collection</button>';
+        else
+            echo '<button name="remove-skin-collection" value="remove_collection">Remove from Collection</button>';
+        ?>
     </div>
     <div style="margin-top: 15px">
-        <button name="add-skin-wishlist" value="Add to Wishlist">Add to Wish List</button>
+        <?php if (!$b_skin_wished)
+            echo '<button name="add-skin-wishlist" value="add_wishlist">Add to Wish List</button>';
+        else
+            echo '<button name="remove-skin-wishlist" value="remove_wishlist">Remove from Wish Lit</button>';
+        ?>
     </div>
 </div>
