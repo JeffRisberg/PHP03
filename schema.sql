@@ -116,6 +116,14 @@ insert into champions (id, name, title, role_id, icon_img_url, date_created, las
 values (3, 'Ashe', ' the Frost Archer', 3, 'http://www.mobafire.com/images/champion/icon/ashe.png', now(), now());
 insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
 values (4, 'Gankplank', ' the Saltwater Scourge', 4, 'http://www.mobafire.com/images/champion/icon/gangplank.png', now(), now());
+insert into champions (id,name, title, role_id, icon_img_url, date_created, last_updated)
+values (5, 'Vi', ' the Piltover Enforcer', 4, 'http://www.mobafire.com/images/champion/icon/vi.png', now(), now());
+insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
+values (6, 'Varus', ' the Arrow of Retribution', 3, 'http://www.mobafire.com/images/champion/icon/varus.png', now(), now());
+insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
+values (7, 'Jarvan IV', ' the Exemplar of Demacia', 4, 'http://www.mobafire.com/images/champion/icon/jarvan-iv.png', now(), now());
+insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
+values (8, 'Kalista', ' the Spear of Vengence', 3, 'http://www.mobafire.com/images/champion/icon/kalista.png', now(), now());
 
 insert into skins (name, img_url, date_created, last_updated) values ('Alpha', 'skin1.gif', now(), now());
 insert into skins (name, img_url, date_created, last_updated) values ('Beta', 'skin2.gif', now(), now());
