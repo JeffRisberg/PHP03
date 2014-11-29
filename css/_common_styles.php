@@ -11,6 +11,7 @@
 
     .champion-icon {
         padding: 5px
+        float: left;
     }
 
     figure figcaption {

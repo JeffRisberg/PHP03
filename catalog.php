@@ -9,7 +9,18 @@
  */
 
 include '_header.php';
+include '_connect.php';
 include 'css/_common_styles.php';
+
+$sql = <<<SQL
+SELECT * FROM champions
+SQL;
+
+if (!$result = mysqli_query($db_connection, $sql)) {
+    die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+}
+
+$num_champions = $result->num_rows;
 
 ?>
 
@@ -24,56 +35,26 @@ include 'css/_common_styles.php';
     </div>
     <div class="catalog-list">
         <table>
-            <tr>
+            <?php
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="col-md-2 champion-icon">';
+                echo '<figure>';
+                echo '<div style="width: 120px">';
+                echo '<img src=' . $row['icon_img_url'] . ' href="" style="align-content: center">';
+                echo '<figcaption style="align-content: center">' . $row['name'] . '</figcaption>';
+                echo '</div>';
+                echo '</figure>';
+                echo '</div>';
+            }
+            ?>
+            <!-- <tr>
                 <td class="champion-icon">
                     <figure>
                         <img src="http://www.mobafire.com/images/champion/icon/leona.png" href="champion.php">
                         <figcaption style="align-content: center">Leona</figcaption>
                     </figure>
                 </td>
-                <td class="champion-icon">
-                    <figure>
-                        <img src="http://www.mobafire.com/images/champion/icon/ahri.png" href="champion.php">
-                        <figcaption style="align-content: center">Ahri</figcaption>
-                    </figure>
-                </td>
-                <td class="champion-icon">
-                    <figure>
-                        <img src="http://www.mobafire.com/images/champion/icon/diana.png" href="champion.php">
-                        <figcaption style="align-content: center">Diana</figcaption>
-                    </figure>
-                </td>
-                <td class="champion-icon">
-                    <figure>
-                        <img src="http://www.mobafire.com/images/champion/icon/jarvan-iv.png" href="champion.php">
-                        <figcaption style="align-content: center">Jarvan</figcaption>
-                    </figure>
-                </td>
-                <td class="champion-icon">
-                    <figure>
-                        <img src="http://www.mobafire.com/images/champion/icon/vi.png" href="champion.php">
-                        <figcaption style="align-content: center">Vi</figcaption>
-                    </figure>
-                </td>
-                <td class="champion-icon">
-                    <figure>
-                        <img src="http://www.mobafire.com/images/champion/icon/morgana.png" href="champion.php">
-                        <figcaption style="align-content: center">Morgana</figcaption>
-                    </figure>
-                </td>
-                <td class="champion-icon">
-                    <figure>
-                        <img src="http://www.mobafire.com/images/champion/icon/varus.png" href="champion.php">
-                        <figcaption style="align-content: center">Varus</figcaption>
-                    </figure>
-                </td>
-                <td class="champion-icon">
-                    <figure>
-                        <img src="http://www.mobafire.com/images/champion/icon/kalista.png" href="champion.php">
-                        <figcaption style="align-content: center">Kalista</figcaption>
-                    </figure>
-                </td>
-            </tr>
+            </tr> -->
         </table>
     </div>
 </div>

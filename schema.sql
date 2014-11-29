@@ -1,6 +1,11 @@
+drop table if exists user_champion;
+drop table if exists user_skin_wishlist;
+drop table if exists user_skin_collection;
+drop table if exists visibility_settings;
 drop table if exists users;
-drop table if exists skin_types;
+drop table if exists skins;
 drop table if exists champions;
+drop table if exists champion_roles;
 
 create table champion_roles (
 	id           int(11)      NOT NULL AUTO_INCREMENT,
@@ -44,11 +49,24 @@ create table users (
 	id           int(11)      NOT NULL AUTO_INCREMENT,
 	user_name    varchar(255) NOT NULL,
 	password     varchar(255) NOT NULL,
+	avatar_img   varchar(255) NOT NULL,
+	visibility   int(11)      NOT NULL,
 	date_created datetime     NOT NULL,
 	last_updated datetime     NOT NULL,
 	PRIMARY KEY (id)
 )
 	ENGINE =InnoDB
+	DEFAULT CHARSET =latin1
+	AUTO_INCREMENT =1;
+
+create table visibility_settings (
+	id           int(11)      NOT NULL AUTO_INCREMENT,
+  name         varchar(255) NOT NULL,
+	date_created datetime     NOT NULL,
+	last_updated datetime     NOT NULL,
+	PRIMARY KEY (id)
+)
+  ENGINE =InnoDB
 	DEFAULT CHARSET =latin1
 	AUTO_INCREMENT =1;
 
@@ -85,28 +103,28 @@ create table user_champion (
 	DEFAULT CHARSET =latin1
 	AUTO_INCREMENT =1;
 
-insert into champion_role (name) values ('Assassin');
-insert into champion_role (name) values ('Mage');
-insert into champion_role (name) values ('Marksman');
-insert into champion_role (name) values ('Jungler');
+insert into champion_roles (id, name) values (1, 'Assassin');
+insert into champion_roles (id, name) values (2, 'Mage');
+insert into champion_roles (id, name) values (3, 'Marksman');
+insert into champion_roles (id, name) values (4, 'Jungler');
 
-insert into champions (name, role, splash_img_url, date_created, last_updated)
-values ('Nocturn', 'Assassin', 'skin1.gif', now(), now());
-insert into champions (name, role, splash_img_url, date_created, last_updated)
-values ('Morgana', 'Mage', 'skin2.gif', now(), now());
-insert into champions (name, role, splash_img_url, date_created, last_updated)
-values ('Ashe', 'Marksman', 'skin3.gif', now(), now());
-insert into champions (name, role, splash_img_url, date_created, last_updated)
-values ('Gankplank', 'Jungler', 'skin4.gif', now(), now());
+insert into champions (id,name, title, role_id, icon_img_url, date_created, last_updated)
+values (1, 'Nocturn', ' the Eternal Nightmare', 1, 'http://www.mobafire.com/images/champion/icon/nocturne.png', now(), now());
+insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
+values (2, 'Morgana', ' the Fallen Angel', 2, 'http://www.mobafire.com/images/champion/icon/morgana.png', now(), now());
+insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
+values (3, 'Ashe', ' the Frost Archer', 3, 'http://www.mobafire.com/images/champion/icon/ashe.png', now(), now());
+insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
+values (4, 'Gankplank', ' the Saltwater Scourge', 4, 'http://www.mobafire.com/images/champion/icon/gangplank.png', now(), now());
 
 insert into skins (name, img_url, date_created, last_updated) values ('Alpha', 'skin1.gif', now(), now());
 insert into skins (name, img_url, date_created, last_updated) values ('Beta', 'skin2.gif', now(), now());
 insert into skins (name, img_url, date_created, last_updated) values ('Gamma', 'skin3.gif', now(), now());
 insert into skins (name, img_url, date_created, last_updated) values ('Delta', 'skin4.gif', now(), now());
 
-insert into users (user_name, password, date_created, last_updated) values ('Brandon', 'abcd', now(), now());
-insert into users (user_name, password, date_created, last_updated) values ('Jeffrey', 'abcd', now(), now());
-insert into users (user_name, password, date_created, last_updated) values ('Lauren', 'abcd', now(), now());
+insert into users (user_name, password, avatar_img, visibility, date_created, last_updated) values ('Brandon', 'abcd', 'skin1.gif', 0, now(), now());
+insert into users (user_name, password, avatar_img, visibility, date_created, last_updated) values ('Jeffrey', 'abcd', 'skin1.gif', 0, now(), now());
+insert into users (user_name, password, avatar_img, visibility, date_created, last_updated) values ('Lauren', 'abcd', 'skin1.gif', 0, now(), now());
 
 insert into user_skin_collection (user_id, skin_id, date_created)
 values (1, 1, now());

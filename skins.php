@@ -7,7 +7,7 @@
     <?php
     $sql = <<<SQL
     SELECT *
-    FROM skin_types
+    FROM skins
 SQL;
 
     if (!$result = mysqli_query($db_connection, $sql)) {
