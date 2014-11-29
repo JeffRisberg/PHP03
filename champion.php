@@ -15,10 +15,10 @@ include 'css/_common_styles.php';
 ?>
 
 <style>
-    .container {height: 637px; background-image: url('http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg')}
+    .container2 {height: 637px; background-image: url('http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg')}
 </style>
 
-<div>
+<div class="container2">
     <div style="margin-top: 50px">
         <select >
             <option value="default-skin">Default Skin</option>
