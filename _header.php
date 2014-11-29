@@ -27,13 +27,21 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="trending.php">Trending</a></li>
-                <li><a href="catalog.php">Champions</a></li>
+                <li <?php if ($active == 'index') echo 'class="active"' ?>><a href="index.php">Home</a></li>
+                <li <?php if ($active == 'trending') echo 'class="active"' ?>><a href="trending.php">Trending</a></li>
+                <li <?php if ($active == 'catalog') echo 'class="active"' ?>><a href="catalog.php">Catalog</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="profile.php">Profile</a></li>
-                <li><a href="login_form.php">Login</a></li>
+                <?php if ($b_user_logged_in) { ?>
+                    <li <?php if ($active == 'profile') echo 'class="active"' ?>>
+                        <a href="profile.php">Profile</a>
+                    </li>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php } else { ?>
+                    <li <?php if ($active == 'login_form') echo 'class="active"' ?>>
+                        <a href="login_form.php">Login</a>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
         <!--/.nav-collapse -->

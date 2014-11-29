@@ -1,4 +1,6 @@
+<?php $active = "index"; ?>
 <?php include '_header.php'; ?>
+<?php include '_connect.php'; ?>
 
 <!--
  There is nothing clever about this code -- it is copied exactly from the example in the Twitter Bootstrap
@@ -50,7 +52,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-3 col-md-offset-1" style="background-color: #91A5F2; padding: 5px">
+    <div class="col-md-3" style="background-color: #91A5F2; padding: 5px">
         <h3>We offer your favorites</h3>
 
         <p>Your choice of skins!</p>
@@ -58,31 +60,26 @@
         <p>Quo ut movet sonet. Est et omnium imperdiet tincidunt. Illum tollit euismod ut est. Menandri accommodare vix
             cu, no mel agam utamur salutandi, ea consulatu disputando interpretaris pro. Id vitae scripta vim, quem
             causae detraxit ei his. Molestiae accommodare ut vim, ut est graece possit disputationi.
-
-            Omnis sonet putent te nec, ex cum tale bonorum. Malis fugit ius te, vis quem stet urbanitas te, usu cu movet
-            appareat. Mel ex dicta quidam neglegentur, est dico laudem pertinacia an. Qui albucius persecuti neglegentur
-            id, no agam paulo integre duo. Eu malis phaedrum pri. An nam quaeque repudiandae philosophia.</p>
-    </div>
-
-    <div class="col-md-6 col-md-offset-1" style="background-color: #91A5F2; padding: 5px">
-        <h3>All skins are battle-tested and league-approved!</h3>
-
-        <p>Cu vidit falli sed, cibo sale errem ne duo, sea nonumy civibus indoctum ea. At odio mediocrem pro, meis
-            scripta accusamus mel ea. Nam ea graeco sapientem aliquando, feugiat ponderum philosophia id est, eripuit
-            platonem patrioque in eam. Nusquam consulatu ad qui, odio dicat molestiae ei his, omnes explicari cu vel.
-
-            Reque legere fierent est an, eam te movet atomorum, sed fabellas vulputate te. Id qui accusam evertitur, at
-            splendide consetetur pro. Ius no quaerendum interpretaris, eam no sensibus tractatos efficiendi, qui at
-            conceptam mediocritatem. Has in fabulas assueverit signiferumque. Cum explicari persequeris cu.
         </p>
+    </div>
+    <div class="col-md-7 col-md-offset-1" style="background-color: #91A5F2; padding: 5px">
+        <?php
+        $sql = <<<SQL
+    SELECT *
+    FROM news
+    ORDER BY date_created DESC
+SQL;
 
-        <p>Eligendi aliquando sit no, eu nostrum salutandi honestatis nam. Has no errem option aliquip. No vis similique
-            forensibus, cum ea modo falli movet. Adhuc eligendi adipisci pri et, nam vivendo probatus ex. Et eos aeque
-            homero, quo dolores accusamus id.
+        if (!$result = mysqli_query($db_connection, $sql)) {
+            die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+        }
+        while ($row = $result->fetch_assoc()) {
+            echo '<div>';
+            echo '<h4>' . date("F j, Y", strtotime($row['date_created'])) . '</h4>';
+            echo '<p>' . $row['message'] . '</p>';
+            echo '</div>';
+        }?>
 
-            Solum necessitatibus id eum, nostrud percipitur eu sea, causae latine corrumpit mei cu. Modus putent ne vim,
-            mei cu pertinax erroribus. Ne aliquam nominavi pri, illud audire blandit eos in. Iudico primis dissentiet ut
-            eos, cu aperiri ocurreret scriptorem usu.</p>
     </div>
 </div>
 

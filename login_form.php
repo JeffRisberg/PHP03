@@ -1,3 +1,4 @@
+<?php $active = "login_form"; ?>
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
 

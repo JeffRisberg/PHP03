@@ -1,11 +1,7 @@
+<?php $active = "catalog"; ?>
 <?php
 /**
- * Created by PhpStorm.
- * User: Brandon
- * Date: 11/28/2014
- * Time: 5:58 PM
- *
- * This page will list all champion in the game (filterable) to allow you to drill down to a specific champion page.
+ * This page will list all champions in the game (filterable) and allow you to drill down to a specific champion page.
  */
 
 include '_header.php';
@@ -21,7 +17,6 @@ if (!$result = mysqli_query($db_connection, $sql)) {
 }
 
 $num_champions = $result->num_rows;
-
 ?>
 
 <div class="page-body">
@@ -49,14 +44,6 @@ $num_champions = $result->num_rows;
                 echo '</div>';
             }
             ?>
-            <!-- <tr>
-                <td class="champion-icon">
-                    <figure>
-                        <img src="http://www.mobafire.com/images/champion/icon/leona.png" href="champion.php">
-                        <figcaption style="align-content: center">Leona</figcaption>
-                    </figure>
-                </td>
-            </tr> -->
         </table>
     </div>
 </div>

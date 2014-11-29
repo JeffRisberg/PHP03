@@ -1,0 +1,37 @@
+<?php $active = "trending"; ?>
+<?php include '_header.php'; ?>
+<?php include '_connect.php'; ?>
+
+<h2>Recent trending champions:</h2>
+
+<table>
+    <?php
+    $sql = <<<SQL
+    SELECT champion_id, name, icon_img_url, count(user_id) as count
+    FROM user_champion
+    JOIN champions ON champion_id = champions.id
+    GROUP BY champion_id
+    ORDER BY Count(user_id) DESC
+    LIMIT 10
+SQL;
+
+    if (!$result = mysqli_query($db_connection, $sql)) {
+        die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+    }
+    while ($row = $result->fetch_assoc()) {
+        echo '<tr>';
+        echo '<td style="padding: 10px">' . $row['name'] . '</td>';
+        echo '<td style="padding: 10px">';
+        echo '<a href="champion.php?id=' . $row['champion_id'] . '">';
+        echo '<img height="40" src="' . $row['icon_img_url'] . '"/>';
+        echo '</a>';
+        echo '</td>';
+        echo '<td style="padding: 10px">';
+        echo 'Recent purchases: ' . $row['count'];
+        echo '</td>';
+        echo '</tr>';
+    }?>
+</table>
+
+
+<?php include '_footer.php'; ?>
