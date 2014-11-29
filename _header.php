@@ -12,24 +12,32 @@
 
 <?php include '_login.php'; ?>
 
-<header>
-    <div style="float:right"><img src="img/php03_logo.png"/></div>
-    <div style="font-weight: bold; font-size: 19px; padding: 5px">Welcome to the Skin Shop!</div>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">The Skin Shop</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.php">Home</a></li>
+                <li><a href="catalog.php">Champions</a></li>
+                <li><a href="skins.php">Skins</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="login_form.php">Login</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
 
-    <table style="background-color: #cccccc; padding: 5px">
-        <tr>
-            <td style="padding: 5px"><a href="index.php">Home</a></td>
-            <td style="padding: 5px"><a href="skins.php">Skins</a></td>
-            <?php
-            if ($b_user_logged_in == 1) {
-                echo '<td style=/"padding: 5px/">Welcome back ' . $user_name . '</td>';
-                echo '<td style="padding: 5px"><a href="logout.php">Log Out</a></td>';
-            } else {
-                echo '<td style="padding: 5px"><a href="login_form.php">Login</a></td>';
-            }
-            ?>
-        </tr>
-    </table>
-</header>
-
-<div class="container">
+<div class="container" style="margin-top: 60px">
