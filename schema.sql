@@ -35,6 +35,7 @@ create table champions (
 create table skins (
 	id           int(11)      NOT NULL AUTO_INCREMENT,
 	champion_id  int(11)      NOT NULL,
+  is_default   bit(1)       NOT NULL,
 	name         varchar(255) NOT NULL,
 	img_url      varchar(255) NULL,
 	date_created datetime     NOT NULL,
@@ -126,10 +127,26 @@ values (7, 'Jarvan IV', ' the Exemplar of Demacia', 4, 'http://www.mobafire.com/
 insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
 values (8, 'Kalista', ' the Spear of Vengence', 3, 'http://www.mobafire.com/images/champion/icon/kalista.png', now(), now());
 
-insert into skins (name, img_url, date_created, last_updated) values ('Alpha', 'skin1.gif', now(), now());
-insert into skins (name, img_url, date_created, last_updated) values ('Beta', 'skin2.gif', now(), now());
-insert into skins (name, img_url, date_created, last_updated) values ('Gamma', 'skin3.gif', now(), now());
-insert into skins (name, img_url, date_created, last_updated) values ('Delta', 'skin4.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (1, 'Classic', 2, true, 'skin1.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (2, 'Exiled Morgana', 2, false, 'skin1.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (3, 'Blade Mistress Morgana', 2, false, 'skin1.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (4, 'Sinful Succulence Morgana', 2, false, 'skin1.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (5, 'Blackthorn Morgana', 2, false, 'skin1.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (6, 'Ghost Bride Morgana', 2, false, 'skin1.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (7, 'Victorious Morgana', 2, false, 'skin1.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (8, 'Beta', 1, true, 'skin2.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (9, 'Gamma', 1, true, 'skin3.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (10, 'Delta', 1, true, 'skin4.gif', now(), now());
 
 insert into visibility_settings (id, name) values (0, 'Public');
 insert into visibility_settings (id, name) values (0, 'Private');

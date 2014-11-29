@@ -10,7 +10,24 @@
  */
 
 include '_header.php';
+include '_connect.php';
 include 'css/_common_styles.php';
+
+$champion_id = $_GET['id'];
+
+$sql = <<<SQL
+SELECT * FROM skins
+WHERE champion_id=$champion_id
+ORDER BY date_created
+SQL;
+
+var_dump($sql);
+
+if (!$result = mysqli_query($db_connection, $sql)) {
+    die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+}
+
+var_dump($result);
 
 ?>
 
@@ -20,14 +37,12 @@ include 'css/_common_styles.php';
 
 <div class="container2">
     <div style="margin-top: 50px">
-        <select >
-            <option value="default-skin">Default Skin</option>
-            <option value="exiled-skin">Exiled Morgana</option>
-            <option value="blademistress-skin">Blade Mistress Morgana</option>
-            <option value="blackthorn-skin">Blackthorn Morgana</option>
-            <option value="chef-skin">Sinful Succulence Morgana</option>
-            <option value="chef-skin">Ghost Bride Morgana</option>
-            <option value="chef-skin">Victorious Morgana</option>
+        <select name="skin_select">
+            <?php
+                while($row = $result->fetch_assoc()) {
+                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                }
+            ?>
         </select>
     </div>
     <div style="margin-top: 100px">
