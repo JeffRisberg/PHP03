@@ -1,8 +1,8 @@
 drop table if exists user_champion;
 drop table if exists user_skin_wishlist;
 drop table if exists user_skin_collection;
-drop table if exists visibility_settings;
 drop table if exists users;
+drop table if exists visibility_settings;
 drop table if exists skins;
 drop table if exists champions;
 drop table if exists champion_roles;
@@ -45,6 +45,17 @@ create table skins (
 	DEFAULT CHARSET =latin1
 	AUTO_INCREMENT =1;
 
+create table visibility_settings (
+  id           int(11)      NOT NULL AUTO_INCREMENT,
+  name         varchar(255) NOT NULL,
+  date_created datetime     NOT NULL,
+  last_updated datetime     NOT NULL,
+  PRIMARY KEY (id)
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =latin1
+  AUTO_INCREMENT =1;
+
 create table users (
 	id           int(11)      NOT NULL AUTO_INCREMENT,
 	user_name    varchar(255) NOT NULL,
@@ -59,16 +70,6 @@ create table users (
 	DEFAULT CHARSET =latin1
 	AUTO_INCREMENT =1;
 
-create table visibility_settings (
-	id           int(11)      NOT NULL AUTO_INCREMENT,
-  name         varchar(255) NOT NULL,
-	date_created datetime     NOT NULL,
-	last_updated datetime     NOT NULL,
-	PRIMARY KEY (id)
-)
-  ENGINE =InnoDB
-	DEFAULT CHARSET =latin1
-	AUTO_INCREMENT =1;
 
 create table user_skin_collection (-- owned
 	id           int(11)  NOT NULL AUTO_INCREMENT,
@@ -129,6 +130,10 @@ insert into skins (name, img_url, date_created, last_updated) values ('Alpha', '
 insert into skins (name, img_url, date_created, last_updated) values ('Beta', 'skin2.gif', now(), now());
 insert into skins (name, img_url, date_created, last_updated) values ('Gamma', 'skin3.gif', now(), now());
 insert into skins (name, img_url, date_created, last_updated) values ('Delta', 'skin4.gif', now(), now());
+
+insert into visibility_settings (id, name) values (0, 'Public');
+insert into visibility_settings (id, name) values (0, 'Private');
+insert into visibility_settings (id, name) values (0, 'Friends');
 
 insert into users (user_name, password, avatar_img, visibility, date_created, last_updated) values ('Brandon', 'abcd', 'skin1.gif', 0, now(), now());
 insert into users (user_name, password, avatar_img, visibility, date_created, last_updated) values ('Jeffrey', 'abcd', 'skin1.gif', 0, now(), now());
