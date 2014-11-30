@@ -68,3 +68,5 @@ if (!$user_champions_result = mysqli_query($db_connection, $sql)) {
         There is no user with that id.
     </div>
 <?php } ?>
+
+<?php include '_footer.php'; ?>

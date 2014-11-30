@@ -136,3 +136,5 @@ SQL;
         });
     });
 </script>
+
+<?php include '_footer.php'; ?>
