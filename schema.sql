@@ -32,13 +32,13 @@ create table champion_roles (
 	AUTO_INCREMENT =1;
 
 create table champions (
-	id           int(11)      NOT NULL AUTO_INCREMENT,
-	name         varchar(255) NOT NULL,
-	title        varchar(255) NOT NULL,
-	role_id      int(11)      NOT NULL,
-	icon_img_url varchar(255) NULL,
-	date_created datetime     NOT NULL,
-	last_updated datetime     NOT NULL,
+	id              int(11)      NOT NULL AUTO_INCREMENT,
+	name            varchar(255) NOT NULL,
+	title           varchar(255) NOT NULL,
+	role_id         int(11)      NOT NULL,
+	icon_img_url    varchar(255) NULL,
+	date_created    datetime     NOT NULL,
+	last_updated    datetime     NOT NULL,
 	PRIMARY KEY (id)
 )
 	ENGINE =InnoDB
