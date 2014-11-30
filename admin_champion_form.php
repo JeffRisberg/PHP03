@@ -25,13 +25,31 @@ if ($id != null) { // Edit
     $name = '';
     $role_id = '';
 }
+
+$sql = 'select * from champion_roles';
+
+$champion_roles_result = mysqli_query($db_connection, $sql);
+if (!$result) {
+    die('Query failed. Error is: ' . mysqli_error($db));
+}
 ?>
 
 <form action="admin_champion_submit.php" method="POST">
 
     <p>Name: <input type="text" name="name" value="<?php echo $name ?>"/></p>
 
-    <p>RoleId: <input type="text" name="role_id" value="<?php echo $role_id ?>"/></p>
+    <p>
+        RoleId:
+        <select name="role_id">
+            <?php
+            while ($row = mysqli_fetch_array($champion_roles_result)) {
+                $this_id = $row['id'];
+                $selected = ($this_id == $role_id ? "selected" : "");
+                echo "<option ${selected} value='{$row['id']}'>{$row['name']}</option>";
+            }
+            ?>
+        </select>
+    </p>
 
     <?php
     if ($id != null) {
