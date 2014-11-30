@@ -78,11 +78,10 @@ SQL;
 <style>
     .container2 {
         height: 637px;
-        background-image: url('http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg')
     }
 </style>
 
-<div class="container2">
+<div id="background_container" class="container2" style="background-image: url('img/skins/<?php echo $skin_id; ?>-1080px.jpg')">
     <form id="show_champion_form" action="show_champion.php">
         <input type="hidden" name="id" value="<?php echo $champion_id ?>"/>
 
