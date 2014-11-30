@@ -7,9 +7,9 @@ $id = null;
 if (array_key_exists('id', $_GET)) $id = $_GET['id'];
 
 if ($id != null) { // Edit
-    echo '<h2>Change a Champion</h2>';
+    echo '<h2>Change a User</h2>';
 
-    $sql = 'select * from champions where id=' . $id;
+    $sql = 'select * from users where id=' . $id;
 
     $result = mysqli_query($db_connection, $sql);
     if (!$result) {
@@ -17,32 +17,32 @@ if ($id != null) { // Edit
     }
 
     $row = mysqli_fetch_array($result);
-    $name = $row['name'];
-    $role_id = $row['role_id'];
+    $name = $row['user_name'];
+    $visibility = $row['visibility'];
 } else { // Edit
-    echo '<h2>Add a New Champion</h2>';
+    echo '<h2>Add a New User</h2>';
 
     $name = '';
-    $role_id = '';
+    $visibility = '';
 }
 
-$sql = 'select * from champion_roles';
+$sql = 'select * from visibility_settings';
 
-$champion_roles_result = mysqli_query($db_connection, $sql);
-if (!$champion_roles_result) {
+$visibility_settings_result = mysqli_query($db_connection, $sql);
+if (!$visibility_settings_result) {
     die('Query failed. Error is: ' . mysqli_error($db_connection));
 }
 ?>
 
-<form action="admin_champion_submit.php" method="POST">
+<form action="admin_user_submit.php" method="POST">
 
     <p>Name: <input type="text" name="name" value="<?php echo $name ?>"/></p>
 
     <p>
-        Role:
-        <select name="role_id">
+        Visibility:
+        <select name="visibility">
             <?php
-            while ($row = mysqli_fetch_array($champion_roles_result)) {
+            while ($row = mysqli_fetch_array($visibility_settings_result)) {
                 $this_id = $row['id'];
                 $selected = ($this_id == $role_id ? "selected" : "");
                 echo "<option ${selected} value='{$row['id']}'>{$row['name']}</option>";
@@ -53,10 +53,10 @@ if (!$champion_roles_result) {
 
     <?php
     if ($id != null) {
-        echo '<input type="submit" name="button" value="Change Champion"/>';
+        echo '<input type="submit" name="button" value="Change User"/>';
         echo '<input type="hidden" name="id" value="' . $id . '"/>';
     } else {
-        echo '<input type="submit" name="button" value="Add Champion"/>';
+        echo '<input type="submit" name="button" value="Add User"/>';
     }
     ?>
 </form>
