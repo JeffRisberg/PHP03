@@ -32,13 +32,13 @@ create table champion_roles (
 	AUTO_INCREMENT =1;
 
 create table champions (
-	id           int(11)      NOT NULL AUTO_INCREMENT,
-	name         varchar(255) NOT NULL,
-	title        varchar(255) NOT NULL,
-	role_id      int(11)      NOT NULL,
-	icon_img_url varchar(255) NULL,
-	date_created datetime     NOT NULL,
-	last_updated datetime     NOT NULL,
+	id              int(11)      NOT NULL AUTO_INCREMENT,
+	name            varchar(255) NOT NULL,
+	title           varchar(255) NOT NULL,
+	role_id         int(11)      NOT NULL,
+	icon_img_url    varchar(255) NULL,
+	date_created    datetime     NOT NULL,
+	last_updated    datetime     NOT NULL,
 	PRIMARY KEY (id)
 )
 	ENGINE =InnoDB
@@ -162,9 +162,9 @@ values
 	(8, 'Kalista', 'the Spear of Vengence', 3, 'http://www.mobafire.com/images/champion/icon/kalista.png', now(), now());
 
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (1, 'Classic', 2, true, 'skin1.gif', now(), now());
+values (1, 'Classic', 2, true, 'http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (2, 'Exiled Morgana', 2, false, 'skin1.gif', now(), now());
+values (2, 'Exiled Morgana', 2, false, 'http://img2.wikia.nocookie.net/__cb20110112020357/leagueoflegends/images/thumb/f/f8/Morgana_ExiledSkin.jpg/1080px-Morgana_ExiledSkin.jpg', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
 values (3, 'Blade Mistress Morgana', 2, false, 'skin1.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
@@ -176,11 +176,11 @@ values (6, 'Ghost Bride Morgana', 2, false, 'skin1.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
 values (7, 'Victorious Morgana', 2, false, 'skin1.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (8, 'Beta', 1, true, 'skin2.gif', now(), now());
+values (8, 'Classic', 1, true, 'skin2.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (9, 'Gamma', 1, true, 'skin3.gif', now(), now());
+values (9, 'Frozen Terror Nocturn', 1, false, 'skin3.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (10, 'Delta', 1, true, 'skin4.gif', now(), now());
+values (10, 'Void', 1, false, 'skin4.gif', now(), now());
 
 insert into users (user_name, password, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
 values ('Brandon', 'abcd', 'skin1.gif', 1, true, '2014-11-27 14:23:45', '2014-11-06 14:23:45', '2014-11-28 09:55:45');
