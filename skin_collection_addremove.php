@@ -39,4 +39,4 @@ if (!$result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
 }
 
-header('Location: show_champion.php?id=' . $champion_id);
+header("Location: show_champion.php?id=$champion_id&skin_id=$skin_id");

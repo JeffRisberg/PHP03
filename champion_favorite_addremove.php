@@ -8,6 +8,7 @@ include '_connect.php';
 
 $action = $_GET['action'];
 $champion_id = $_GET['champion_id'];
+$skin_id = $_GET['skin_id'];
 
 if ($action == "add") {
     $sql = <<<SQL
@@ -25,4 +26,4 @@ if (!$result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
 }
 
-header('Location: show_champion.php?id=' . $champion_id);
+header("Location: show_champion.php?id=$champion_id&skin_id=$skin_id");

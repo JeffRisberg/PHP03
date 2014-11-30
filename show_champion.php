@@ -101,16 +101,16 @@ SQL;
     <div style="margin-top: 100px">
         <?php if ($b_user_logged_in) { ?>
             <?php if (!$b_champion_favorited)
-                echo "<a class='btn btn-success' href='champion_favorite_addremove.php?action=add&champion_id=$champion_id'>Add Favorite Champion</a>";
+                echo "<a class='btn btn-success' href='champion_favorite_addremove.php?action=add&champion_id=$champion_id&skin_id=$skin_id'>Add Favorite Champion</a>";
             else
-                echo "<a class='btn btn-danger' href='champion_favorite_addremove.php?action=remove&champion_id=$champion_id'>Remove Favorite Champion</a>";
+                echo "<a class='btn btn-danger' href='champion_favorite_addremove.php?action=remove&champion_id=$champion_id&skin_id=$skin_id'>Remove Favorite Champion</a>";
             ?>
         <?php } ?>
     </div>
     <div style="margin-top: 15px">
         <?php if ($b_user_logged_in) { ?>
             <?php if (!$b_skin_collected)
-                echo "<a class='btn btn-success' href='skin_collection_addremove.php?action=add&champion_id=$champion_id&skin_id=$skin_id''>Add to Collection</a>";
+                echo "<a class='btn btn-success' href='skin_collection_addremove.php?action=add&champion_id=$champion_id&skin_id=$skin_id'>Add to Collection</a>";
             else
                 echo "<a class='btn btn-danger' href='skin_collection_addremove.php?action=remove&champion_id=$champion_id&skin_id=$skin_id'>Remove from Collection</a>";
             ?>
