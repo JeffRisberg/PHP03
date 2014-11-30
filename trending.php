@@ -25,7 +25,7 @@ if (!$trending_champions_result = mysqli_query($db_connection, $sql)) {
         echo '<tr>';
         echo '<td style="padding: 10px">' . $row['name'] . '</td>';
         echo '<td style="padding: 10px">';
-        echo '<a href="champion.php?id=' . $row['champion_id'] . '">';
+        echo '<a href="show_champion.php?id=' . $row['champion_id'] . '">';
         echo '<img height="40" src="' . $row['icon_img_url'] . '"/>';
         echo '</a>';
         echo '</td>';

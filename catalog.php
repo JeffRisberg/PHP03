@@ -35,7 +35,7 @@ $num_champions = $result->num_rows;
                 echo '<div class="col-md-2 champion-icon">';
                 echo '<figure>';
                 echo '<div style="width: 120px">';
-                echo '<a href="champion.php?id=' . $row['id'] . '">';
+                echo '<a href="show_champion.php?id=' . $row['id'] . '">';
                 echo '<img src=' . $row['icon_img_url'] . ' href="" style="align-content: center">';
                 echo '</a>';
                 echo '<figcaption style="align-content: center">' . $row['name'] . '</figcaption>';

@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Brandon
- * Date: 11/29/2014
- * Time: 2:32 PM
+ * Action-handling screen that changes the user_champion content.  When done, goes back to champion screen.
  */
 
 include '_login.php';
@@ -17,15 +14,12 @@ if ($action == "add") {
 INSERT INTO user_champion (user_id, champion_id, date_created)
 VALUES ($user_id, $champion_id, now())
 SQL;
-}
-else if ($action == "remove") {
+} else if ($action == "remove") {
     $sql = <<<SQL
 DELETE FROM user_champion
 WHERE user_id='$user_id' AND champion_id='$champion_id'
 SQL;
 }
-
-var_dump($sql);
 
 if (!$result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');

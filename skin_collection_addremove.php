@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Brandon
- * Date: 11/29/2014
- * Time: 2:32 PM
+ * Action-handling screen that changes the collection content.  When done, goes back to champion screen.
  */
 
 include '_login.php';

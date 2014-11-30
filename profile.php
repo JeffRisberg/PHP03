@@ -55,7 +55,7 @@ if (!$user_champions_result = mysqli_query($db_connection, $sql)) {
                     echo '<tr>';
                     echo '<td class="favorite-champ-list-header">#' . $index . '</td>';
                     echo '<td class="favorite-champ-list-element">';
-                    echo '<a href="champion.php?id=' . $row['champion_id'] . '">' . $row['champion_name'] . '</a>';
+                    echo '<a href="show_champion.php?id=' . $row['champion_id'] . '">' . $row['champion_name'] . '</a>';
                     echo '</td>';
                     echo '</tr>';
                     $index = $index + 1;
