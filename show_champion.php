@@ -16,7 +16,7 @@ if (array_key_exists('skin_id', $_GET))
 else
     $skin_id = 1; // should query for default
 
-//query champion information
+//Query champion information
 $sql = <<<SQL
 SELECT * FROM champions
 WHERE id=$champion_id
@@ -124,7 +124,7 @@ SQL;
         </div>
 
         <form id="show_champion_form" action="show_champion.php">
-            <input type="hidden" name="id" value="<?php echo $champion_id ?>"/>
+            <input id="id" name="id" type="hidden" value="<?php echo $champion_id ?>"/>
 
             <div style="margin-top: 100px">
                 <select id="skin_select" name="skin_id">
@@ -139,24 +139,24 @@ SQL;
             </div>
         </form>
         <div style="margin-top: 15px">
-            <?php if ($b_user_logged_in) { ?>
-                <?php if (!$b_skin_collected)
-                    echo "<a class='btn btn-success' href='skin_collection_addremove.php?action=add&champion_id=$champion_id&skin_id=$skin_id'>Add to Collection</a>";
-                else
-                    echo "<a class='btn btn-danger' href='skin_collection_addremove.php?action=remove&champion_id=$champion_id&skin_id=$skin_id'>Remove from Collection</a>";
-                ?>
-            <?php } ?>
+            <a id="addCollectButton" class='btn btn-success' style="display:none"
+               href='skin_collection_addremove.php?action=add&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
+                Add to Collection
+            </a>
+            <a id="removeCollectButton" class='btn btn-danger' style="display:none"
+               href='skin_collection_addremove.php?action=remove&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
+                Remove from Collection
+            </a>
         </div>
         <div style="margin-top: 15px">
-            <?php if ($b_user_logged_in) { ?>
-                <?php if (!$b_skin_collected) {
-                    if (!$b_skin_wished)
-                        echo "<a class='btn btn-success' href='skin_wishlist_addremove.php?action=add&champion_id=$champion_id&skin_id=$skin_id'>Add to Wish List</a>";
-                    else
-                        echo "<a class='btn btn-danger' href='skin_wishlist_addremove.php?action=remove&champion_id=$champion_id&skin_id=$skin_id'>Remove from Wish List</a>";
-                }
-                ?>
-            <?php } ?>
+            <a id="addWishButton" class='btn btn-success' style="display:none"
+               href='skin_wishlist_addremove.php?action=add&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
+                Add to Wish List
+            </a>
+            <a id="removeWishButton" class='btn btn-danger' style="display:none"
+               href='skin_wishlist_addremove.php?action=remove&champion_id=<?php $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
+                Remove from Wish List
+            </a>
         </div>
     </div>
 </div>
@@ -164,7 +164,30 @@ SQL;
 <script>
     $(document).ready(function () {
         $('#skin_select').change(function () {
-            $('#show_champion_form').submit();
+            $.post("show_champion_ajax.php", { champion_id: $('#id').val(), skin_id: $('#skin_select').val() })
+                .done(function (data) {
+                    // Change the image
+                    $('#background_container').css('background-image', 'url(' + data.image_url + ')');
+
+                    // Change the visibility of the buttons
+                    if (data.collected) {
+                        $('#addCollectButton').hide();
+                        $('#removeCollectButton').show();
+                    }
+                    else {
+                        $('#addCollectButton').show();
+                        $('#removeCollectButton').hide();
+                    }
+
+                    if (data.wished) {
+                        $('#addWishButton').hide();
+                        $('#removeWishButton').show();
+                    }
+                    else {
+                        $('#addWishButton').show();
+                        $('#removeWishButton').hide();
+                    }
+                });
         });
     });
 </script>
