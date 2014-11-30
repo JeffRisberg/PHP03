@@ -2,6 +2,12 @@
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
 
+<style>
+    table tr td {
+        padding: 5px;
+    }
+</style>
+
 <?php
 $id = null;
 if (array_key_exists('id', $_GET)) $id = $_GET['id'];
@@ -36,20 +42,27 @@ if (!$champion_roles_result) {
 
 <form action="admin_champion_submit.php" method="POST">
 
-    <p>Name: <input type="text" name="name" value="<?php echo $name ?>"/></p>
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" name="name" value="<?php echo $name ?>"/></td>
+        </tr>
 
-    <p>
-        Role:
-        <select name="role_id">
-            <?php
-            while ($row = mysqli_fetch_array($champion_roles_result)) {
-                $this_id = $row['id'];
-                $selected = ($this_id == $role_id ? "selected" : "");
-                echo "<option ${selected} value='{$row['id']}'>{$row['name']}</option>";
-            }
-            ?>
-        </select>
-    </p>
+        <tr>
+            <td>Role:</td>
+            <td>
+                <select name="role_id">
+                    <?php
+                    while ($row = mysqli_fetch_array($champion_roles_result)) {
+                        $this_id = $row['id'];
+                        $selected = ($this_id == $role_id ? "selected" : "");
+                        echo "<option ${selected} value='{$row['id']}'>{$row['name']}</option>";
+                    }
+                    ?>
+                </select>
+            </td>
+        </tr>
+    </table>
 
     <?php
     if ($id != null) {
