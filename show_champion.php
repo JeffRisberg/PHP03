@@ -1,14 +1,15 @@
 <?php $active = "catalog"; ?>
+<?php include '_header.php'; ?>
+<?php include '_connect.php'; ?>
+
+<link rel="stylesheet" href="css/dark_styles.css"/>
+
+<!--
+ Drill down page for a specific champion. Will show the artwork for them along with all the skin variations.
+ Buttons to favorite the champion, and to add/wish for the specified skin.
+-->
+
 <?php
-/**
- * Drill down page for a specific champion. Will show the artwork for them along with all the skin variations.
- * Buttons to favorite the champion, and to add/wish for the specified skin.
- */
-
-include '_header.php';
-include '_connect.php';
-include 'css/_common_styles.php';
-
 $champion_id = $_GET['id'];
 if (array_key_exists('skin_id', $_GET))
     $skin_id = $_GET['skin_id'];
@@ -90,20 +91,23 @@ SQL;
     .container2 {
         height: 637px;
     }
+
     .champion-name {
         color: #e3e3e3;
     }
+
     .champion-title {
         color: #269abc;
     }
 
     .ui-container {
         margin-left: 50px;
-        padding-top:20px;
+        padding-top: 20px;
     }
 </style>
 
-<div id="background_container" class="container2" style="background-image: url('img/skins/<?php echo $skin_id; ?>-1080px.jpg')">
+<div id="background_container" class="container2"
+     style="background-image: url('img/skins/<?php echo $skin_id; ?>-1080px.jpg')">
     <div class="ui-container">
         <div>
             <h1 class="champion-name"><?php echo $champion_info['name']; ?></h1>

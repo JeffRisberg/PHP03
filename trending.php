@@ -1,7 +1,12 @@
 <?php $active = "trending"; ?>
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
-<?php include 'css/_common_styles.php'; ?>
+
+<link rel="stylesheet" href="css/dark_styles.css"/>
+
+<!--
+  Shows what is hot.
+  -->
 
 <?php
 $sql = <<<SQL

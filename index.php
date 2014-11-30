@@ -1,7 +1,8 @@
 <?php $active = "index"; ?>
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
-<?php include 'css/_common_styles.php'; ?>
+
+<link rel="stylesheet" href="css/dark_styles.css"/>
 
 <!--
  There is nothing clever about this code -- it is copied exactly from the example in the Twitter Bootstrap

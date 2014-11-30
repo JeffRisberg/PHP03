@@ -1,13 +1,14 @@
 <?php $active = "catalog"; ?>
+<?php include '_header.php'; ?>
+<?php include '_connect.php'; ?>
+
+<link rel="stylesheet" href="css/dark_styles.css"/>
+
+<!--
+ Show the icons for a filtered set of champions.
+ -->
+
 <?php
-/**
- * This page will list all champions in the game (filterable) and allow you to drill down to a specific champion page.
- */
-
-include '_header.php';
-include '_connect.php';
-include 'css/_common_styles.php';
-
 $sql = <<<SQL
 SELECT * FROM champions
 SQL;

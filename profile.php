@@ -1,7 +1,12 @@
-<?php $active = "profile"; ?>
+<?php $active = "catalog"; ?>
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
-<?php include 'css/_common_styles.php'; ?>
+
+    <link rel="stylesheet" href="css/dark_styles.css"/>
+
+    <!--
+     A profile includes user information and user's favorite champions.
+     -->
 
 <?php
 $sql = <<<SQL
