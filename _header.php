@@ -33,6 +33,11 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php if ($b_user_logged_in) { ?>
+                    <?php if ($b_user_is_admin) { ?>
+                        <li <?php if ($active == 'admin') echo 'class="active"' ?>>
+                            <a href="admin.php">Admin</a>
+                        </li>
+                    <?php } ?>
                     <li <?php if ($active == 'profile') echo 'class="active"' ?>>
                         <a href="profile.php">Profile</a>
                     </li>
