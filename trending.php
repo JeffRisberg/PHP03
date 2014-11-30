@@ -1,6 +1,7 @@
 <?php $active = "trending"; ?>
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
+<?php include 'css/_common_styles.php'; ?>
 
 <?php
 $sql = <<<SQL
@@ -22,7 +23,7 @@ if (!$trending_champions_result = mysqli_query($db_connection, $sql)) {
 <table>
     <?php
     while ($row = $trending_champions_result->fetch_assoc()) {
-        echo '<tr>';
+        echo '<tr class="trending-champ">';
         echo '<td style="padding: 10px">' . $row['name'] . '</td>';
         echo '<td style="padding: 10px">';
         echo '<a href="show_champion.php?id=' . $row['champion_id'] . '">';

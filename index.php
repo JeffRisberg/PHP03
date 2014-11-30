@@ -1,6 +1,7 @@
 <?php $active = "index"; ?>
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
+<?php include 'css/_common_styles.php'; ?>
 
 <!--
  There is nothing clever about this code -- it is copied exactly from the example in the Twitter Bootstrap
@@ -52,7 +53,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-3" style="background-color: #91A5F2; padding: 5px">
+    <div class="col-md-3" style="padding: 5px">
         <h3>We offer your favorites</h3>
 
         <p>Your choice of skins!</p>
@@ -62,7 +63,7 @@
             causae detraxit ei his. Molestiae accommodare ut vim, ut est graece possit disputationi.
         </p>
     </div>
-    <div class="col-md-7 col-md-offset-1" style="background-color: #91A5F2; padding: 5px">
+    <div class="col-md-7 col-md-offset-1" style="padding: 5px">
         <?php
         $sql = <<<SQL
     SELECT *

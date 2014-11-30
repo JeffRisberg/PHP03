@@ -1,17 +1,25 @@
 <style>
+    body {
+        background-color: black;
+        color: #D1CDCE;
+    }
+
+    .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a {
+        color: #E1DDDE;
+    }
+
     .page-body {
         border: 1px;
         border-color: black;
         border-style: solid;
-        background-color: #E9F0F2
+        background-color: #E9F0F2;
     }
 
     .catalog-list {
     }
 
     .champion-icon {
-        padding: 5px
-        float: left;
+        padding: 5px float : left;
     }
 
     figure figcaption {
@@ -56,19 +64,13 @@
         padding-left: 10px
     }
 
+    .trending-champ {
+        font-size: 23px;
+    }
+
     .splash-background {
         width: 1080px;
         height: 637px;
         background-image: url('http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg')
     }
-
-    body {
-        background-color: black;
-        color: #D1CDCE
-    }
-
-    .navbar-brand {
-
-    }
-
 </style>
