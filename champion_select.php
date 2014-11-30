@@ -12,11 +12,11 @@ $modelname = '';
 $type = '';
 $action = '';
 
-if ( $button == 'Change' ) {
+if ($button == 'Change') {
     //Display the add title
     echo '<h2>Select a Champion to Change</h2>';
-    $type='radio';
-    $action='champion_addchange.php';
+    $type = 'radio';
+    $action = 'champion_addchange.php';
 } else {
     //Display the change title
     echo '<h2>Select Champions to Delete</h2>';
@@ -24,12 +24,15 @@ if ( $button == 'Change' ) {
     $action = 'champion_delete.php';
 }
 
-//Create the SQL INSERT statement
-$sql = 'select * from champions';
+$sql = <<<SQL
+   SELECT c.id as id, c.name as name, cr.name as role_name
+   FROM champions c
+   JOIN champion_roles cr ON c.role_id = cr.id
+SQL;
 
-$result = mysqli_query( $db_connection, $sql );
-if ( !$result ) {
-    die( 'Model query failed. Error is: ' . mysqli_error($db) );
+$result = mysqli_query($db_connection, $sql);
+if (!$result) {
+    die('Model query failed. Error is: ' . mysqli_error($db));
 }
 ?>
 <html>
@@ -37,12 +40,12 @@ if ( !$result ) {
 <?php
 echo '<form method="POST" action="' . $action . '">';
 
-while ( $row = mysqli_fetch_array( $result) ) {
-    echo '<p><input name="model[]" type="' . $type . '" value="'.
-        $row['id'] . '"/>' . $row['name'] . ' : ' . $row['role'] . '</p>';
+while ($row = mysqli_fetch_array($result)) {
+    echo '<p><input name="model[]" type="' . $type . '" value="' .
+        $row['id'] . '"/>' . $row['name'] . ' : ' . $row['role_name'] . '</p>';
 }
 
-if ( $button == 'Delete' ) {
+if ($button == 'Delete') {
     echo '<input type="submit" name="button" value="Delete Champions"/>';
 } else {
     echo '<input type="submit" name="button" value="Select Champion"/>';

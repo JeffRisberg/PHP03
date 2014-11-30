@@ -9,9 +9,11 @@ require('_connect.php');
 
 $modelid = $_POST['modelid'];
 $name = $_POST['name'];
-$role = $_POST['role'];
+$role_id = $_POST['role_id'];
 
-$sql = 'update champions set name="' . $name . '", role="' . $role . '" where id=' . $modelid;
+$sql = <<<SQL
+update champions set name='$name', role_id='$role_id' where id=$modelid;
+SQL;
 
 //Mysqli code to connect to database and execute the query
 if (!$result = mysqli_query($db_connection, $sql)) {
