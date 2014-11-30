@@ -32,14 +32,15 @@ create table champion_roles (
 	AUTO_INCREMENT =1;
 
 create table champions (
-	id              int(11)      NOT NULL AUTO_INCREMENT,
-	name            varchar(255) NOT NULL,
-	title           varchar(255) NOT NULL,
-	role_id         int(11)      NOT NULL,
-	icon_img_url    varchar(255) NULL,
-	date_created    datetime     NOT NULL,
-	last_updated    datetime     NOT NULL,
-	PRIMARY KEY (id)
+	id           int(11)      NOT NULL AUTO_INCREMENT,
+	name         varchar(255) NOT NULL,
+	title        varchar(255) NOT NULL,
+	role_id      int(11)      NOT NULL,
+	icon_img_url varchar(255) NULL,
+	date_created datetime     NOT NULL,
+	last_updated datetime     NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (role_id) REFERENCES champion_roles (id)
 )
 	ENGINE =InnoDB
 	DEFAULT CHARSET =latin1
@@ -53,7 +54,8 @@ create table skins (
 	img_url      varchar(255) NULL,
 	date_created datetime     NOT NULL,
 	last_updated datetime     NOT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	FOREIGN KEY (champion_id) REFERENCES champions (id)
 )
 	ENGINE =InnoDB
 	DEFAULT CHARSET =latin1
@@ -69,7 +71,8 @@ create table users (
 	last_login   datetime     NULL,
 	date_created datetime     NOT NULL,
 	last_updated datetime     NOT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	FOREIGN KEY (visibility) REFERENCES visibility_settings (id)
 )
 	ENGINE =InnoDB
 	DEFAULT CHARSET =latin1
@@ -80,7 +83,9 @@ create table user_skin_collection (-- owned
 	user_id      int(11)  NOT NULL,
 	skin_id      int(11)  NOT NULL,
 	date_created datetime NOT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES users (id),
+	FOREIGN KEY (skin_id) REFERENCES skins (id)
 )
 	ENGINE =InnoDB
 	DEFAULT CHARSET =latin1
@@ -91,7 +96,9 @@ create table user_skin_wishlist (
 	user_id      int(11)  NOT NULL,
 	skin_id      int(11)  NOT NULL,
 	date_created datetime NOT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES users (id),
+	FOREIGN KEY (skin_id) REFERENCES skins (id)
 )
 	ENGINE =InnoDB
 	DEFAULT CHARSET =latin1
@@ -102,17 +109,20 @@ create table user_champion (
 	user_id      int(11)  NOT NULL,
 	champion_id  int(11)  NOT NULL,
 	date_created datetime NOT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES users (id),
+	FOREIGN KEY (champion_id) REFERENCES champions (id)
 )
 	ENGINE =InnoDB
 	DEFAULT CHARSET =latin1
 	AUTO_INCREMENT =1;
 
-
 create table user_friend (
 	user_id   int(11) NOT NULL,
 	friend_id int(11) NOT NULL,
-	PRIMARY KEY (user_id, friend_id)
+	PRIMARY KEY (user_id, friend_id),
+	FOREIGN KEY (user_id) REFERENCES users (id),
+	FOREIGN KEY (friend_id) REFERENCES users (id)
 )
 	ENGINE =InnoDB
 	DEFAULT CHARSET =latin1;
@@ -123,7 +133,9 @@ create table news (
 	champion_id  int(11)  NULL,
 	skin_id      int(11)  NULL,
 	date_created datetime NOT NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	FOREIGN KEY (champion_id) REFERENCES champions (id),
+	FOREIGN KEY (skin_id) REFERENCES skins (id)
 )
 	ENGINE =InnoDB
 	DEFAULT CHARSET =latin1
@@ -162,9 +174,13 @@ values
 	(8, 'Kalista', 'the Spear of Vengence', 3, 'http://www.mobafire.com/images/champion/icon/kalista.png', now(), now());
 
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (1, 'Classic', 2, true, 'http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg', now(), now());
+values (1, 'Classic', 2, true,
+				'http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg',
+				now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (2, 'Exiled Morgana', 2, false, 'http://img2.wikia.nocookie.net/__cb20110112020357/leagueoflegends/images/thumb/f/f8/Morgana_ExiledSkin.jpg/1080px-Morgana_ExiledSkin.jpg', now(), now());
+values (2, 'Exiled Morgana', 2, false,
+				'http://img2.wikia.nocookie.net/__cb20110112020357/leagueoflegends/images/thumb/f/f8/Morgana_ExiledSkin.jpg/1080px-Morgana_ExiledSkin.jpg',
+				now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
 values (3, 'Blade Mistress Morgana', 2, false, 'skin1.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
