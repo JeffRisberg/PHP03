@@ -23,7 +23,8 @@
         padding: 8px;
         border-style: solid;
         border-width: 0 0 3px 0;
-        border-color: black
+        border-color: black;
+        background-color: #C2C0C0
     }
 
     .basic-info {
@@ -59,6 +60,15 @@
         width: 1080px;
         height: 637px;
         background-image: url('http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg')
+    }
+
+    body {
+        background-color: black;
+        color: #D1CDCE
+    }
+
+    .navbar-brand {
+
     }
 
 </style>
