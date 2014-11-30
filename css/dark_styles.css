@@ -7,6 +7,10 @@ body {
     color: #E1DDDE;
 }
 
+select {
+    color: black;
+}
+
 .page-body {
     border: 1px;
     border-color: black;
