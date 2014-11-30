@@ -1,7 +1,6 @@
 drop table if exists news;
 drop table if exists user_friend;
 drop table if exists user_champion;
-drop table if exists user_skin_wishlist;
 drop table if exists user_skin_collection;
 drop table if exists users;
 drop table if exists skins;
@@ -79,23 +78,11 @@ create table users (
 	AUTO_INCREMENT =1;
 
 create table user_skin_collection (-- owned
-	id           int(11)  NOT NULL AUTO_INCREMENT,
-	user_id      int(11)  NOT NULL,
-	skin_id      int(11)  NOT NULL,
-	date_created datetime NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY (user_id) REFERENCES users (id),
-	FOREIGN KEY (skin_id) REFERENCES skins (id)
-)
-	ENGINE =InnoDB
-	DEFAULT CHARSET =latin1
-	AUTO_INCREMENT =1;
-
-create table user_skin_wishlist (
-	id           int(11)  NOT NULL AUTO_INCREMENT,
-	user_id      int(11)  NOT NULL,
-	skin_id      int(11)  NOT NULL,
-	date_created datetime NOT NULL,
+	id               int(11)  NOT NULL AUTO_INCREMENT,
+	user_id          int(11)  NOT NULL,
+	skin_id          int(11)  NOT NULL,
+  ownership_status varchar(50), -- Owned, Wih List, ect
+	date_created     datetime NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (user_id) REFERENCES users (id),
 	FOREIGN KEY (skin_id) REFERENCES skins (id)
@@ -205,16 +192,12 @@ values ('Jeffrey', 'abcd', 'skin1.gif', 1, false, '2014-11-26 22:09:44', '2014-1
 insert into users (user_name, password, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
 values ('Lauren', 'abcd', 'skin1.gif', 2, false, '2014-11-02 02:44:23', '2014-10-30 02:44:09', '2014-11-03 20:06:32');
 
-insert into user_skin_collection (user_id, skin_id, date_created)
-values (1, 1, now());
-
-insert into user_skin_collection (user_id, skin_id, date_created)
-values (1, 2, now());
-
-insert into user_skin_wishlist (user_id, skin_id, date_created)
-values (1, 3, now());
-insert into user_skin_wishlist (user_id, skin_id, date_created)
-values (1, 1, now());
+insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
+values (1, 1, 'collected', now());
+insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
+values (1, 2, 'collected', now());
+insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
+values (1, 3, 'wished', now());
 
 insert into user_champion (user_id, champion_id, date_created)
 values (1, 3, now());

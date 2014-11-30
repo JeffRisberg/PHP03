@@ -40,8 +40,7 @@ if (!$skin_result = mysqli_query($db_connection, $sql)) {
 
 //Check if the user has already favorited this champion
 $b_champion_favorited = false;
-$b_skin_collected = false;
-$b_skin_wished = false;
+$skin_ownership_status = 'notOwned';
 
 if ($b_user_logged_in) {
     $sql = <<<SQL
@@ -67,22 +66,10 @@ SQL;
         die('There was an error running the query [' . mysqli_error($db_connection) . ']');
     }
 
+    $skin_ownership_status = 'notOwned';
     if ($collection_result->num_rows > 0) {
-        $b_skin_collected = true;
-    }
-
-    //Check if the user already wants this skin
-    $sql = <<<SQL
-SELECT * FROM user_skin_wishlist
-WHERE skin_id=$skin_id AND user_id=$user_id
-SQL;
-
-    if (!$wishlist_result = mysqli_query($db_connection, $sql)) {
-        die('There was an error running the query [' . mysqli_error($db_connection) . ']');
-    }
-
-    if ($wishlist_result->num_rows > 0) {
-        $b_skin_wished = true;
+        $row = $collection_result->fetch_assoc();
+        $skin_ownership_status = $row['ownership_status'];
     }
 }
 ?>
@@ -140,7 +127,11 @@ SQL;
         </form>
         <div style="margin-top: 15px">
             <a id="addCollectButton" class='btn btn-success' style="display:none"
-               href='skin_collection_addremove.php?action=add&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
+               href='skin_collection_addremove.php?action=addCollection&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
+                Add to Collection
+            </a>
+            <a id="updateCollectButton" class='btn btn-success' style="display:none"
+               href='skin_collection_addremove.php?action=updateCollection&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
                 Add to Collection
             </a>
             <a id="removeCollectButton" class='btn btn-danger' style="display:none"
@@ -150,11 +141,11 @@ SQL;
         </div>
         <div style="margin-top: 15px">
             <a id="addWishButton" class='btn btn-success' style="display:none"
-               href='skin_wishlist_addremove.php?action=add&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
+               href='skin_collection_addremove.php?action=addWishList&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
                 Add to Wish List
             </a>
             <a id="removeWishButton" class='btn btn-danger' style="display:none"
-               href='skin_wishlist_addremove.php?action=remove&champion_id=<?php $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
+               href='skin_collection_addremove.php?action=remove&champion_id=<?php $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
                 Remove from Wish List
             </a>
         </div>
@@ -170,22 +161,29 @@ SQL;
                     $('#background_container').css('background-image', 'url(' + data.image_url + ')');
 
                     // Change the visibility of the buttons
-                    if (data.collected) {
-                        $('#addCollectButton').hide();
-                        $('#removeCollectButton').show();
-                    }
-                    else {
+                    if (data.ownership_status == 'notOwned') { // no record of skin, allow buy and wish
                         $('#addCollectButton').show();
                         $('#removeCollectButton').hide();
+                        $('#updateCollectButton').hide();
+                        $('#addWishButton').show();
+                        $('#removeWishButton').hide();
                     }
-
-                    if (data.wished) {
+                    if (data.ownership_status == 'collected') { // we own the skin, only allow removal
+                        $('#addCollectButton').hide();
+                        $('#removeCollectButton').show();
+                        $('#updateCollectButton').hide();
+                        $('#addWishButton').hide();
+                        $('#removeWishButton').hide();
+                    }
+                    if (data.ownership_status == 'wished') { // skin on wishlist, remove from wish and update record
+                        $('#addCollectButton').hide();
+                        $('#removeCollectButton').hide();
+                        $('#updateCollectButton').show();
                         $('#addWishButton').hide();
                         $('#removeWishButton').show();
                     }
                     else {
-                        $('#addWishButton').show();
-                        $('#removeWishButton').hide();
+                        // error, invalid return result for ownership_status
                     }
                 });
         });
