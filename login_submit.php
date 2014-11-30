@@ -5,7 +5,7 @@ ini_set("display_errors", 1);
 include '_connect.php';
 
 $user_name = $_REQUEST['user_name'];
-$password  = $_REQUEST['password'];
+$password = $_REQUEST['password'];
 
 $sql = <<<SQL
 SELECT *
@@ -23,16 +23,19 @@ if ($result->num_rows != 0) {
         session_start();
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['user_name'] = $row['user_name'];
+
+        $sql = 'UPDATE users SET last_login = now() WHERE id=' . $row['id'];
+        $stmt = mysqli_prepare($db_connection, $sql);
+        var_dump(mysqli_stmt_execute($stmt));
+
         header('Location: index.php');
-    }
-    else {
-        //$_POST['login_responce'] = 'Incorrect password for user \'' . $user_name . '\'';
+    } else {
+        //$_POST['login_response'] = 'Incorrect password for user \'' . $user_name . '\'';
         header('Location: login_form.php?error=1');
         //die('Incorrect password for user \'' . $user_name . '\'');
     }
-}
-else {
-    //$_POST['login_responce'] = 'No user found for user name: ' . $user_name . '.';
+} else {
+    //$_POST['login_response'] = 'No user found for user name: ' . $user_name . '.';
     header('Location: login_form.php?error=2');
     //die('No user found for user name: ' . $user_name . '.');
 }

@@ -48,7 +48,7 @@ create table champions (
 create table skins (
 	id           int(11)      NOT NULL AUTO_INCREMENT,
 	champion_id  int(11)      NOT NULL,
-  is_default   bit(1)       NOT NULL,
+	is_default   bit(1)       NOT NULL,
 	name         varchar(255) NOT NULL,
 	img_url      varchar(255) NULL,
 	date_created datetime     NOT NULL,
@@ -66,6 +66,7 @@ create table users (
 	avatar_img   varchar(255) NOT NULL,
 	visibility   int(11)      NOT NULL,
 	is_admin     bit(1)       NOT NULL,
+	last_login   datetime     NULL,
 	date_created datetime     NOT NULL,
 	last_updated datetime     NOT NULL,
 	PRIMARY KEY (id)
@@ -137,22 +138,28 @@ insert into champion_roles (id, name) values (2, 'Mage');
 insert into champion_roles (id, name) values (3, 'Marksman');
 insert into champion_roles (id, name) values (4, 'Jungler');
 
-insert into champions (id,name, title, role_id, icon_img_url, date_created, last_updated)
-values (1, 'Nocturn', 'the Eternal Nightmare', 1, 'http://www.mobafire.com/images/champion/icon/nocturne.png', now(), now());
+insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
+values
+	(1, 'Nocturn', 'the Eternal Nightmare', 1, 'http://www.mobafire.com/images/champion/icon/nocturne.png', now(), now());
 insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
 values (2, 'Morgana', 'the Fallen Angel', 2, 'http://www.mobafire.com/images/champion/icon/morgana.png', now(), now());
 insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
 values (3, 'Ashe', 'the Frost Archer', 3, 'http://www.mobafire.com/images/champion/icon/ashe.png', now(), now());
 insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
-values (4, 'Gankplank', 'the Saltwater Scourge', 4, 'http://www.mobafire.com/images/champion/icon/gangplank.png', now(), now());
-insert into champions (id,name, title, role_id, icon_img_url, date_created, last_updated)
+values (4, 'Gankplank', 'the Saltwater Scourge', 4, 'http://www.mobafire.com/images/champion/icon/gangplank.png', now(),
+				now());
+insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
 values (5, 'Vi', 'the Piltover Enforcer', 4, 'http://www.mobafire.com/images/champion/icon/vi.png', now(), now());
 insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
-values (6, 'Varus', 'the Arrow of Retribution', 3, 'http://www.mobafire.com/images/champion/icon/varus.png', now(), now());
+values
+	(6, 'Varus', 'the Arrow of Retribution', 3, 'http://www.mobafire.com/images/champion/icon/varus.png', now(), now());
 insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
-values (7, 'Jarvan IV', 'the Exemplar of Demacia', 4, 'http://www.mobafire.com/images/champion/icon/jarvan-iv.png', now(), now());
+values
+	(7, 'Jarvan IV', 'the Exemplar of Demacia', 4, 'http://www.mobafire.com/images/champion/icon/jarvan-iv.png', now(),
+	 now());
 insert into champions (id, name, title, role_id, icon_img_url, date_created, last_updated)
-values (8, 'Kalista', 'the Spear of Vengence', 3, 'http://www.mobafire.com/images/champion/icon/kalista.png', now(), now());
+values
+	(8, 'Kalista', 'the Spear of Vengence', 3, 'http://www.mobafire.com/images/champion/icon/kalista.png', now(), now());
 
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
 values (1, 'Classic', 2, true, 'skin1.gif', now(), now());
@@ -175,12 +182,12 @@ values (9, 'Gamma', 1, true, 'skin3.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
 values (10, 'Delta', 1, true, 'skin4.gif', now(), now());
 
-insert into users (user_name, password, avatar_img, visibility, is_admin, date_created, last_updated)
-values ('Brandon', 'abcd', 'skin1.gif', 1, true, now(), now());
-insert into users (user_name, password, avatar_img, visibility, is_admin, date_created, last_updated)
-values ('Jeffrey', 'abcd', 'skin1.gif',1, false, now(), now());
-insert into users (user_name, password, avatar_img, visibility, is_admin, date_created, last_updated)
-values ('Lauren', 'abcd','skin1.gif', 2, false, now(), now());
+insert into users (user_name, password, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
+values ('Brandon', 'abcd', 'skin1.gif', 1, true, '2014-11-27 14:23:45', '2014-11-06 14:23:45', '2014-11-28 09:55:45');
+insert into users (user_name, password, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
+values ('Jeffrey', 'abcd', 'skin1.gif', 1, false, '2014-11-26 22:09:44', '2014-11-12 22:09:44', '2014-11-27 12:32:34');
+insert into users (user_name, password, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
+values ('Lauren', 'abcd', 'skin1.gif', 2, false, '2014-11-02 02:44:23', '2014-10-30 02:44:09', '2014-11-03 20:06:32');
 
 insert into user_skin_collection (user_id, skin_id, date_created)
 values (1, 1, now());

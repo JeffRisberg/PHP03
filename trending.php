@@ -2,11 +2,8 @@
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
 
-<h2>Recent trending champions:</h2>
-
-<table>
-    <?php
-    $sql = <<<SQL
+<?php
+$sql = <<<SQL
     SELECT champion_id, name, icon_img_url, count(user_id) as count
     FROM user_champion
     JOIN champions ON champion_id = champions.id
@@ -15,10 +12,16 @@
     LIMIT 10
 SQL;
 
-    if (!$result = mysqli_query($db_connection, $sql)) {
-        die('There was an error running the query [' . mysqli_error($db_connection) . ']');
-    }
-    while ($row = $result->fetch_assoc()) {
+if (!$trending_champions_result = mysqli_query($db_connection, $sql)) {
+    die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+}
+?>
+
+<h2>Recent trending champions:</h2>
+
+<table>
+    <?php
+    while ($row = $trending_champions_result->fetch_assoc()) {
         echo '<tr>';
         echo '<td style="padding: 10px">' . $row['name'] . '</td>';
         echo '<td style="padding: 10px">';
@@ -32,6 +35,5 @@ SQL;
         echo '</tr>';
     }?>
 </table>
-
 
 <?php include '_footer.php'; ?>
