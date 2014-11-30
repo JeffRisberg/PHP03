@@ -86,7 +86,7 @@ SQL;
     <form id="show_champion_form" action="show_champion.php">
         <input type="hidden" name="id" value="<?php echo $champion_id ?>"/>
 
-        <div style="margin - top: 50px">
+        <div style="margin-top: 50px">
             <select id="skin_select" name="skin_id">
                 <?php
                 while ($skin_row = $skin_result->fetch_assoc()) {
@@ -98,7 +98,7 @@ SQL;
             </select>
         </div>
     </form>
-    <div style="margin - top: 100px">
+    <div style="margin-top: 100px">
         <?php if ($b_user_logged_in) { ?>
             <?php if (!$b_champion_favorited)
                 echo "<a class='btn btn-success' href='champion_favorite_addremove.php?action=add&champion_id=$champion_id'>Add Favorite Champion</a>";
@@ -107,7 +107,7 @@ SQL;
             ?>
         <?php } ?>
     </div>
-    <div style="margin - top: 15px">
+    <div style="margin-top: 15px">
         <?php if ($b_user_logged_in) { ?>
             <?php if (!$b_skin_collected)
                 echo "<a class='btn btn-success' href='skin_collection_addremove.php?action=add&champion_id=$champion_id&skin_id=$skin_id''>Add to Collection</a>";
@@ -116,7 +116,7 @@ SQL;
             ?>
         <?php } ?>
     </div>
-    <div style="margin - top: 15px">
+    <div style="margin-top: 15px">
         <?php if ($b_user_logged_in) { ?>
             <?php if (!$b_skin_collected) {
                 if (!$b_skin_wished)
