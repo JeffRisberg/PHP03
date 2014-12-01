@@ -24,11 +24,13 @@ if ($id != null) { // Edit
 
     $row = mysqli_fetch_array($result);
     $name = $row['user_name'];
+    $avatar_img = $row['avatar_img'];
     $visibility = $row['visibility'];
 } else { // Edit
     echo '<h2>Add a New User</h2>';
 
     $name = '';
+    $avatar_img = null;
     $visibility = '';
 }
 
@@ -40,7 +42,7 @@ if (!$visibility_settings_result) {
 }
 ?>
 
-<form action="admin_user_submit.php" method="POST">
+<form action="admin_user_submit.php" method="POST" enctype="multipart/form-data">
 
     <table>
         <tr>
@@ -49,8 +51,11 @@ if (!$visibility_settings_result) {
         </tr>
 
         <tr>
-            <td>Image:</td>
-            <td><input type="file" name="image" value=""/></td>
+            <td>Avatar:</td>
+            <td>
+                <?php if ($avatar_img) echo "<img src='uploads/users/$avatar_img' height=40/>"; ?>
+                <input type="file" name="avatar_img" value="" style="display: inline"/>
+            </td>
         </tr>
 
         <tr>

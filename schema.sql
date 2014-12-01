@@ -64,7 +64,7 @@ create table users (
 	id           int(11)      NOT NULL AUTO_INCREMENT,
 	user_name    varchar(255) NOT NULL,
 	password     varchar(255) NOT NULL,
-	avatar_img   varchar(255) NOT NULL,
+	avatar_img   varchar(255) NULL,
 	visibility   int(11)      NOT NULL,
 	is_admin     bit(1)       NOT NULL,
 	last_login   datetime     NULL,
@@ -81,7 +81,7 @@ create table user_skin_collection (-- owned
 	id               int(11)  NOT NULL AUTO_INCREMENT,
 	user_id          int(11)  NOT NULL,
 	skin_id          int(11)  NOT NULL,
-  ownership_status varchar(50), -- Owned, Wih List, ect
+	ownership_status varchar(50), -- Owned, Wih List, ect
 	date_created     datetime NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (user_id) REFERENCES users (id),
@@ -185,12 +185,12 @@ values (9, 'Frozen Terror Nocturn', 1, false, 'skin3.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
 values (10, 'Void', 1, false, 'skin4.gif', now(), now());
 
+insert into users (user_name, password, visibility, is_admin, last_login, date_created, last_updated)
+values ('Brandon', 'abcd', 1, true, '2014-11-27 14:23:45', '2014-11-06 14:23:45', '2014-11-28 09:55:45');
 insert into users (user_name, password, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
-values ('Brandon', 'abcd', 'skin1.gif', 1, true, '2014-11-27 14:23:45', '2014-11-06 14:23:45', '2014-11-28 09:55:45');
-insert into users (user_name, password, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
-values ('Jeffrey', 'abcd', 'skin1.gif', 1, false, '2014-11-26 22:09:44', '2014-11-12 22:09:44', '2014-11-27 12:32:34');
-insert into users (user_name, password, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
-values ('Lauren', 'abcd', 'skin1.gif', 2, false, '2014-11-02 02:44:23', '2014-10-30 02:44:09', '2014-11-03 20:06:32');
+values ('Jeffrey', 'abcd', 'jeff.jpg', 1, false, '2014-11-26 22:09:44', '2014-11-12 22:09:44', '2014-11-27 12:32:34');
+insert into users (user_name, password, visibility, is_admin, last_login, date_created, last_updated)
+values ('Lauren', 'abcd', 2, false, '2014-11-02 02:44:23', '2014-10-30 02:44:09', '2014-11-03 20:06:32');
 
 insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
 values (1, 1, 'collected', now());
