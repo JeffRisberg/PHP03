@@ -112,6 +112,7 @@ SQL;
 
         <form id="show_champion_form" action="skin_collection_addremove.php" method="get">
             <input id="id" name="id" type="hidden" value="<?php echo $champion_id ?>"/>
+            <input id="skin_status" name="ownership_status" type="hidden" value=""/>
 
             <div style="margin-top: 100px">
                 <select id="skin_select" name="skin_id">
@@ -126,7 +127,6 @@ SQL;
             </div>
             <div style="margin-top: 15px">
                 <input type="submit" id="addCollectButton" name="action" class='btn btn-success' style="display:none" value="Add to Collection"/>
-                <input type="submit" id="updateCollectButton" name="action" class='btn btn-success' style="display:none" value="Add to Collection"/>
                 <input type="submit" id="removeCollectButton" name="action" class='btn btn-danger' style="display:none" value="Remove from Wish List"/>
             </div>
             <div style="margin-top: 15px">
@@ -145,25 +145,25 @@ SQL;
                     // Change the image
                     $('#background_container').css('background-image', 'url(' + data.image_url + ')');
 
+                    // Update hidden form fields
+                    $('#skin_status').val(data.ownership_status);
+
                     // Change the visibility of the buttons
                     if (data.ownership_status == 'notOwned') { // no record of skin, allow buy and wish
                         $('#addCollectButton').show();
                         $('#removeCollectButton').hide();
-                        $('#updateCollectButton').hide();
                         $('#addWishButton').show();
                         $('#removeWishButton').hide();
                     }
                     if (data.ownership_status == 'collected') { // we own the skin, only allow removal
                         $('#addCollectButton').hide();
                         $('#removeCollectButton').show();
-                        $('#updateCollectButton').hide();
                         $('#addWishButton').hide();
                         $('#removeWishButton').hide();
                     }
                     if (data.ownership_status == 'wished') { // skin on wishlist, remove from wish and update record
-                        $('#addCollectButton').hide();
+                        $('#addCollectButton').show();
                         $('#removeCollectButton').hide();
-                        $('#updateCollectButton').show();
                         $('#addWishButton').hide();
                         $('#removeWishButton').show();
                     }
