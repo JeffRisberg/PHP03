@@ -110,7 +110,7 @@ SQL;
             <?php } ?>
         </div>
 
-        <form id="show_champion_form" action="show_champion.php">
+        <form id="show_champion_form" action="skin_collection_addremove.php" method="get">
             <input id="id" name="id" type="hidden" value="<?php echo $champion_id ?>"/>
 
             <div style="margin-top: 100px">
@@ -124,31 +124,16 @@ SQL;
                     ?>
                 </select>
             </div>
+            <div style="margin-top: 15px">
+                <input type="submit" id="addCollectButton" name="action" class='btn btn-success' style="display:none" value="Add to Collection"/>
+                <input type="submit" id="updateCollectButton" name="action" class='btn btn-success' style="display:none" value="Add to Collection"/>
+                <input type="submit" id="removeCollectButton" name="action" class='btn btn-danger' style="display:none" value="Remove from Wish List"/>
+            </div>
+            <div style="margin-top: 15px">
+                <input type="submit" id="addWishButton" name="action" class='btn btn-success' style="display:none" value="Add to Wish List"/>
+                <input type="submit" id="removeWishButton" name="action" class='btn btn-danger' style="display:none" value="Remove from Wish List"/>
+            </div>
         </form>
-        <div style="margin-top: 15px">
-            <a id="addCollectButton" class='btn btn-success' style="display:none"
-               href='skin_collection_addremove.php?action=addCollection&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
-                Add to Collection
-            </a>
-            <a id="updateCollectButton" class='btn btn-success' style="display:none"
-               href='skin_collection_addremove.php?action=updateCollection&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
-                Add to Collection
-            </a>
-            <a id="removeCollectButton" class='btn btn-danger' style="display:none"
-               href='skin_collection_addremove.php?action=remove&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
-                Remove from Collection
-            </a>
-        </div>
-        <div style="margin-top: 15px">
-            <a id="addWishButton" class='btn btn-success' style="display:none"
-               href='skin_collection_addremove.php?action=addWishList&champion_id=<?php echo $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
-                Add to Wish List
-            </a>
-            <a id="removeWishButton" class='btn btn-danger' style="display:none"
-               href='skin_collection_addremove.php?action=remove&champion_id=<?php $champion_id ?>&skin_id=<?php echo $skin_id ?>'>
-                Remove from Wish List
-            </a>
-        </div>
     </div>
 </div>
 

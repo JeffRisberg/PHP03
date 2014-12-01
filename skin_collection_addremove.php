@@ -8,12 +8,12 @@ include '_connect.php';
 
 $action = $_GET['action'];
 $skin_id = $_GET['skin_id'];
-$champion_id = $_GET['champion_id'];
+$champion_id = $_GET['id'];
 
-if ($action == 'addCollection' || $action == 'addWishList') {
+if ($action == 'Add to Collection' || $action == 'Add to Wish List') {
     $new_status = 'notOwned';
-    if ($action == 'addCollection') { $new_status = 'collected';}
-    else if ($action == 'addWishList') { $new_status = 'wished';}
+    if ($action == 'Add to Collection') { $new_status = 'collected';}
+    else if ($action == 'Add to Wish List') { $new_status = 'wished';}
 
     $sql = <<<SQL
 INSERT INTO user_skin_collection (user_id, skin_id, ownership_status, date_created)
@@ -27,7 +27,7 @@ SET ownership_status = 'collected'
 WHERE user_id='$user_id' AND skin_id='$skin_id'
 SQL;
 }
-else if ($action == "remove") {
+else if ($action == 'Remove from Collection' || $action == 'Remove from Wish List') {
     $sql = <<<SQL
 DELETE FROM user_skin_collection
 WHERE user_id='$user_id' AND skin_id='$skin_id'
