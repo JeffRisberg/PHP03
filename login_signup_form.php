@@ -12,6 +12,8 @@
 <h3>Please desired Username and Password:</h3>
 
 <form id="new_user_form" action="login_signup_submit.php">
+    <input type="hidden" name="fallback_url" value="login_submit_form.php"/>
+
     <table>
         <tr>
             <td>Username:</td>
@@ -68,12 +70,12 @@
                         $('#user_name_error').show();
                         error_in_form = true;
                     }
-                });
 
-            if (!error_in_form) {
-                // No errors we can submit the form
-                $('#new_user_form').submit();
-            }
+                    if (!error_in_form) {
+                        // No errors we can submit the form
+                        $('#new_user_form').submit();
+                    }
+                });
         });
     });
 </script>

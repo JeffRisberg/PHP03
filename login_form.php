@@ -5,6 +5,8 @@
 <h3>Please Login:</h3>
 
 <form action="login_submit.php">
+    <input type="hidden" name="fallback_url" value="login_form.php"/>
+
     <table>
         <tr>
             <td>Username:</td>

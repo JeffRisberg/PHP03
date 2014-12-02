@@ -6,6 +6,7 @@ include '_connect.php';
 
 $user_name = $_REQUEST['user_name'];
 $password = $_REQUEST['password'];
+$fallback_url = $_REQUEST['fallback_url'];
 
 $sql = <<<SQL
 SELECT *
@@ -32,12 +33,12 @@ if ($result->num_rows != 0) {
         header('Location: index.php');
     } else {
         //$_POST['login_response'] = 'Incorrect password for user \'' . $user_name . '\'';
-        header('Location: login_form.php?error=1');
+        header("Location: $fallback_url?error=1");
         //die('Incorrect password for user \'' . $user_name . '\'');
     }
 } else {
     //$_POST['login_response'] = 'No user found for user name: ' . $user_name . '.';
-    header('Location: login_form.php?error=2');
+    header("Location: $fallback_url?error=2");
     //die('No user found for user name: ' . $user_name . '.');
 }
 
