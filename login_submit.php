@@ -19,7 +19,7 @@ if (!$result = mysqli_query($db_connection, $sql)) {
 
 if ($result->num_rows != 0) {
     $row = $result->fetch_assoc();
-    if ($row['password'] == $password) {
+    if ($row['password'] == $password) { // TODO: improve authentication beyond plain text passwords
         session_start();
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['user_name'] = $row['user_name'];

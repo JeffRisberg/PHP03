@@ -32,7 +32,7 @@
                 <li <?php if ($active == 'catalog') echo 'class="active"' ?>><a href="catalog.php">Catalog</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <?php if ($b_user_logged_in) { ?>
+                <?php if ($b_user_logged_in) { ?> <!-- user is logged in -->
                     <?php if ($b_user_is_admin) { ?>
                         <li <?php if ($active == 'admin') echo 'class="active"' ?>>
                             <a href="admin.php">Admin</a>
@@ -42,7 +42,10 @@
                         <a href="profile.php">Profile</a>
                     </li>
                     <li><a href="logout.php">Logout</a></li>
-                <?php } else { ?>
+                <?php } else { ?> <!-- no user logged in -->
+                    <li <?php if ($active == 'signup_form') echo 'class="active"' ?>>
+                        <a href="login_signup_form.php">Sign Up</a>
+                    </li>
                     <li <?php if ($active == 'login_form') echo 'class="active"' ?>>
                         <a href="login_form.php">Login</a>
                     </li>
