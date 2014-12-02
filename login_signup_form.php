@@ -9,7 +9,7 @@
     }
 </style>
 
-<h3>Please desired Username and Password:</h3>
+<h3>Create an Account to Start Using MySkinList:</h3>
 
 <form id="new_user_form" action="login_signup_submit.php">
     <input type="hidden" name="fallback_url" value="login_submit_form.php"/>

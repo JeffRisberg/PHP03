@@ -1,4 +1,4 @@
-<?php $active = "catalog"; ?>
+<?php $active = "profile"; ?>
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
 
@@ -71,7 +71,7 @@ if (!$friends_result = mysqli_query($db_connection, $sql)) {
 
                 <p>Last Online: <?php echo $user['last_login'] ?></p>
 
-                <p><a href="settings.php">Settings</a></p>
+                <p><a href="profile_settings_form.php">Settings</a></p>
             </div>
         </div>
         <div class="col-md-5 col-md-offset-1">
