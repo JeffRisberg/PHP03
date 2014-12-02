@@ -13,8 +13,8 @@
 $champion_id = $_GET['id'];
 if (array_key_exists('skin_id', $_GET))
     $skin_id = $_GET['skin_id'];
-//else
-    //$skin_id = 1; // should query for default
+else
+    $skin_id = 1; // should query for default
 
 //Query champion information
 $sql = <<<SQL
@@ -55,8 +55,8 @@ SQL;
     if ($champion_result->num_rows > 0) {
         $b_champion_favorited = true;
     }
-}
-/*    //Check if the user already owns this skin
+
+    //Check if the user already owns this skin
     $sql = <<<SQL
 SELECT * FROM user_skin_collection
 WHERE skin_id=$skin_id AND user_id=$user_id
@@ -71,7 +71,7 @@ SQL;
         $row = $collection_result->fetch_assoc();
         $skin_ownership_status = $row['ownership_status'];
     }
-}*/
+}
 ?>
 
 <style>
@@ -93,8 +93,8 @@ SQL;
     }
 </style>
 
-<div id="background_container" class="container2">
-     <!--style="background-image: url('img/skins/<?php echo $skin_id; ?>-1080px.jpg')">-->
+<div id="background_container" class="container2"
+     style="background-image: url('img/skins/<?php echo $skin_id; ?>-1080px.jpg')">
     <div class="ui-container">
         <div>
             <h1 class="champion-name"><?php echo $champion_info['name']; ?></h1>
@@ -103,9 +103,9 @@ SQL;
         <div style="margin-top: 20px">
             <?php if ($b_user_logged_in) { ?>
                 <?php if (!$b_champion_favorited)
-                    echo "<a class='btn btn-success' href='champion_favorite_addremove.php?action=add&champion_id=$champion_id&skin_id=1'>Add Favorite Champion</a>";
+                    echo "<a class='btn btn-success' href='champion_favorite_addremove.php?action=add&champion_id=$champion_id&skin_id=$skin_id'>Add Favorite Champion</a>";
                 else
-                    echo "<a class='btn btn-danger' href='champion_favorite_addremove.php?action=remove&champion_id=$champion_id&skin_id=1'>Remove Favorite Champion</a>";
+                    echo "<a class='btn btn-danger' href='champion_favorite_addremove.php?action=remove&champion_id=$champion_id&skin_id=$skin_id'>Remove Favorite Champion</a>";
                 ?>
             <?php } ?>
         </div>
@@ -119,9 +119,6 @@ SQL;
                     <?php
                     while ($skin_row = $skin_result->fetch_assoc()) {
                         $this_skin_id = $skin_row['id'];
-                        // set the default skin
-                        if (!$skin_id && $skin_row['is_default']) { $skin_id = $this_skin_id;}
-
                         $selected = ($this_skin_id == $skin_id ? 'selected' : '');
                         echo "<option $selected value='$this_skin_id'>{$skin_row['name']}</option>";
                     }
