@@ -19,13 +19,7 @@ if (!$result = mysqli_query($db_connection, $sql)) {
 if ($result) {
     // Added a new user
 
-    //session_start();
-    //$_SESSION['user_id'] = $row['id'];
-    //$_SESSION['user_name'] = $row['user_name'];
-    //$_SESSION['is_admin'] = $row['is_admin'];
 
-    //$sql = 'UPDATE users SET last_login = now() WHERE id=' . $row['id'];
-    //$stmt = mysqli_prepare($db_connection, $sql);
 
     header('Location: index.php');
 } else {
