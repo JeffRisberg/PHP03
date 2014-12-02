@@ -13,8 +13,7 @@
 $champion_id = $_GET['id'];
 if (array_key_exists('skin_id', $_GET))
     $skin_id = $_GET['skin_id'];
-else
-    $skin_id = 1; // should query for default
+$skin_ownership_status = 'notOwned';
 
 //Query champion information
 $sql = <<<SQL
@@ -37,41 +36,6 @@ SQL;
 if (!$skin_result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
 }
-
-//Check if the user has already favorited this champion
-$b_champion_favorited = false;
-$skin_ownership_status = 'notOwned';
-
-if ($b_user_logged_in) {
-    $sql = <<<SQL
-SELECT * FROM user_champion
-WHERE champion_id=$champion_id AND user_id=$user_id
-SQL;
-
-    if (!$champion_result = mysqli_query($db_connection, $sql)) {
-        die('There was an error running the query [' . mysqli_error($db_connection) . ']');
-    }
-
-    if ($champion_result->num_rows > 0) {
-        $b_champion_favorited = true;
-    }
-
-    //Check if the user already owns this skin
-    $sql = <<<SQL
-SELECT * FROM user_skin_collection
-WHERE skin_id=$skin_id AND user_id=$user_id
-SQL;
-
-    if (!$collection_result = mysqli_query($db_connection, $sql)) {
-        die('There was an error running the query [' . mysqli_error($db_connection) . ']');
-    }
-
-    $skin_ownership_status = 'notOwned';
-    if ($collection_result->num_rows > 0) {
-        $row = $collection_result->fetch_assoc();
-        $skin_ownership_status = $row['ownership_status'];
-    }
-}
 ?>
 
 <style>
@@ -93,22 +57,24 @@ SQL;
     }
 </style>
 
-<div id="background_container" class="container2"
-     style="background-image: url('img/skins/<?php echo $skin_id; ?>-1080px.jpg')">
+<div id="background_container" class="container2">
     <div class="ui-container">
         <div>
             <h1 class="champion-name"><?php echo $champion_info['name']; ?></h1>
             <h4 class="champion-title"><?php echo $champion_info['title']; ?></h4>
         </div>
-        <div style="margin-top: 20px">
-            <?php if ($b_user_logged_in) { ?>
-                <?php if (!$b_champion_favorited)
-                    echo "<a class='btn btn-success' href='champion_favorite_addremove.php?action=add&champion_id=$champion_id&skin_id=$skin_id'>Add Favorite Champion</a>";
-                else
-                    echo "<a class='btn btn-danger' href='champion_favorite_addremove.php?action=remove&champion_id=$champion_id&skin_id=$skin_id'>Remove Favorite Champion</a>";
-                ?>
-            <?php } ?>
-        </div>
+        <?php if ($b_user_logged_in) { ?>
+            <div style="margin-top: 20px">
+                <form id="favorite_champion_form" action="champion_favorite_addremove.php"method="get">
+                    <input id="id" name="id" type="hidden" value="<?php echo $champion_id ?>"/>
+                    <input id="fav_champion_skin_id" name="skin_id" type="hidden" value=""/>
+                    <input id="favorite_champion_form_action" type="hidden" name="action" value=""/>
+
+                    <input type="submit" id="addFavoriteChampion" class='btn btn-success' style="display:none" value="Add Favorite Champion"/>
+                    <input type="submit" id="removeFavoriteChampion" class='btn btn-danger' style="display:none" value="Remove Favorite Champion"/>
+                </form>
+            </div>
+        <?php } ?>
 
         <form id="show_champion_form" action="skin_collection_addremove.php" method="get">
             <input id="id" name="id" type="hidden" value="<?php echo $champion_id ?>"/>
@@ -119,59 +85,90 @@ SQL;
                     <?php
                     while ($skin_row = $skin_result->fetch_assoc()) {
                         $this_skin_id = $skin_row['id'];
+
+                        // set the default skin if one was not specified
+                        if (!$skin_id && $skin_row['is_default']) { $skin_id = $this_skin_id;}
+
                         $selected = ($this_skin_id == $skin_id ? 'selected' : '');
                         echo "<option $selected value='$this_skin_id'>{$skin_row['name']}</option>";
                     }
                     ?>
                 </select>
             </div>
-            <div style="margin-top: 15px">
-                <input type="submit" id="addCollectButton" name="action" class='btn btn-success' style="display:none" value="Add to Collection"/>
-                <input type="submit" id="removeCollectButton" name="action" class='btn btn-danger' style="display:none" value="Remove from Wish List"/>
-            </div>
-            <div style="margin-top: 15px">
-                <input type="submit" id="addWishButton" name="action" class='btn btn-success' style="display:none" value="Add to Wish List"/>
-                <input type="submit" id="removeWishButton" name="action" class='btn btn-danger' style="display:none" value="Remove from Wish List"/>
-            </div>
+            <?php if ($b_user_logged_in) { ?>
+                <div style="margin-top: 15px">
+                    <input type="submit" id="addCollectButton" name="action" class='btn btn-success' style="display:none" value="Add to Collection"/>
+                    <input type="submit" id="removeCollectButton" name="action" class='btn btn-danger' style="display:none" value="Remove from Wish List"/>
+                </div>
+                <div style="margin-top: 15px">
+                    <input type="submit" id="addWishButton" name="action" class='btn btn-success' style="display:none" value="Add to Wish List"/>
+                    <input type="submit" id="removeWishButton" name="action" class='btn btn-danger' style="display:none" value="Remove from Wish List"/>
+                </div>
+            <?php } ?>
         </form>
     </div>
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('#skin_select').change(function () {
-            $.post("show_champion_ajax.php", { champion_id: $('#id').val(), skin_id: $('#skin_select').val() })
-                .done(function (data) {
-                    // Change the image
-                    $('#background_container').css('background-image', 'url(' + data.image_url + ')');
+    function selectSkinAjax() {
+        console.log('selectSkinAjax called.')
+        $.post("show_champion_ajax.php", { champion_id: $('#id').val(), skin_id: $('#skin_select').val() })
+        .done(function (data) {
+            // Change the image
+            $('#background_container').css('background-image', 'url(' + data.image_url + ')');
 
-                    // Update hidden form fields
-                    $('#skin_status').val(data.ownership_status);
+            // Update hidden form fields
+            $('#skin_status').val(data.ownership_status);
+            $('#fav_champion_skin_id').val($('#skin_select').val());
 
-                    // Change the visibility of the buttons
-                    if (data.ownership_status == 'notOwned') { // no record of skin, allow buy and wish
-                        $('#addCollectButton').show();
-                        $('#removeCollectButton').hide();
-                        $('#addWishButton').show();
-                        $('#removeWishButton').hide();
-                    }
-                    if (data.ownership_status == 'collected') { // we own the skin, only allow removal
-                        $('#addCollectButton').hide();
-                        $('#removeCollectButton').show();
-                        $('#addWishButton').hide();
-                        $('#removeWishButton').hide();
-                    }
-                    if (data.ownership_status == 'wished') { // skin on wishlist, remove from wish and update record
-                        $('#addCollectButton').show();
-                        $('#removeCollectButton').hide();
-                        $('#addWishButton').hide();
-                        $('#removeWishButton').show();
-                    }
-                    else {
-                        // error, invalid return result for ownership_status
-                    }
-                });
+            // Change the visibility of the buttons
+            if (data.ownership_status == 'notOwned') { // no record of skin, allow buy and wish
+                $('#addCollectButton').show();
+                $('#removeCollectButton').hide();
+                $('#addWishButton').show();
+                $('#removeWishButton').hide();
+            }
+            if (data.ownership_status == 'collected') { // we own the skin, only allow removal
+                $('#addCollectButton').hide();
+                $('#removeCollectButton').show();
+                $('#addWishButton').hide();
+                $('#removeWishButton').hide();
+            }
+            if (data.ownership_status == 'wished') { // skin on wishlist, remove from wish and update record
+                $('#addCollectButton').show();
+                $('#removeCollectButton').hide();
+                $('#addWishButton').hide();
+                $('#removeWishButton').show();
+            }
+            else {
+                // error, invalid return result for ownership_status
+            }
         });
+    }
+
+    function init_favorite_champion_ajax () {
+        $.post("champion_favorite_ajax.php", { champion_id: $('#id').val()})
+            .done(function (data) {
+                // Change visibility of favorite champion buttons
+                if (data.champion_favorited) {
+                    $('#favorite_champion_form_action').val('remove');
+                    $('#addFavoriteChampion').hide();
+                    $('#removeFavoriteChampion').show();
+                }
+                else if (!data.champion_favorited) {
+                    $('#favorite_champion_form_action').val('add');
+                    $('#addFavoriteChampion').show();
+                    $('#removeFavoriteChampion').hide();
+                }
+            });
+    }
+
+    $(document).ready(function () {
+        // Initialize
+        init_favorite_champion_ajax();
+        selectSkinAjax();
+
+        $('#skin_select').change(selectSkinAjax);
     });
 </script>
 

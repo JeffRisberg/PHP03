@@ -161,11 +161,11 @@ values
 	(8, 'Kalista', 'the Spear of Vengence', 3, 'http://www.mobafire.com/images/champion/icon/kalista.png', now(), now());
 
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (1, 'Classic', 2, true,
+values (1, 'Classic', 2, false,
 				'http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg',
 				now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (2, 'Exiled Morgana', 2, false,
+values (2, 'Exiled Morgana', 2, true,
 				'http://img2.wikia.nocookie.net/__cb20110112020357/leagueoflegends/images/thumb/f/f8/Morgana_ExiledSkin.jpg/1080px-Morgana_ExiledSkin.jpg',
 				now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)

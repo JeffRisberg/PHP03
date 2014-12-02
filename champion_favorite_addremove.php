@@ -7,7 +7,7 @@ include '_login.php';
 include '_connect.php';
 
 $action = $_GET['action'];
-$champion_id = $_GET['champion_id'];
+$champion_id = $_GET['id'];
 $skin_id = $_GET['skin_id'];
 
 if ($action == "add") {
