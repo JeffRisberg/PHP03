@@ -161,7 +161,7 @@ values
 	(8, 'Kalista', 'the Spear of Vengence', 3, 'http://www.mobafire.com/images/champion/icon/kalista.png', now(), now());
 
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (1, 'Classic', 2, false,
+values (1, 'Classic', 2, true,
 				'http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg',
 				now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
@@ -175,7 +175,7 @@ values (4, 'Sinful Succulence Morgana', 2, false, 'skin1.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
 values (5, 'Blackthorn Morgana', 2, false, 'skin1.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (6, 'Ghost Bride Morgana', 2, true, 'skin1.gif', now(), now());
+values (6, 'Ghost Bride Morgana', 2, false, 'skin1.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
 values (7, 'Victorious Morgana', 2, false, 'skin1.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)

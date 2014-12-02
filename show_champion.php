@@ -141,43 +141,40 @@ SQL;
 </div>
 
 <script>
-    function selectSkinCallback() {
-        $.post("show_champion_ajax.php", { champion_id: $('#id').val(), skin_id: $('#skin_select').val() })
-        .done(function (data) {
-            // Change the image
-            $('#background_container').css('background-image', 'url(' + data.image_url + ')');
-
-            // Update hidden form fields
-            $('#skin_status').val(data.ownership_status);
-
-            // Change the visibility of the buttons
-            if (data.ownership_status == 'notOwned') { // no record of skin, allow buy and wish
-                $('#addCollectButton').show();
-                $('#removeCollectButton').hide();
-                $('#addWishButton').show();
-                $('#removeWishButton').hide();
-            }
-            if (data.ownership_status == 'collected') { // we own the skin, only allow removal
-                $('#addCollectButton').hide();
-                $('#removeCollectButton').show();
-                $('#addWishButton').hide();
-                $('#removeWishButton').hide();
-            }
-            if (data.ownership_status == 'wished') { // skin on wishlist, remove from wish and update record
-                $('#addCollectButton').show();
-                $('#removeCollectButton').hide();
-                $('#addWishButton').hide();
-                $('#removeWishButton').show();
-            }
-            else {
-                // error, invalid return result for ownership_status
-            }
-        });
-    }
-
     $(document).ready(function () {
-        selectSkinCallback();
-        $('#skin_select').change(selectSkinCallback());
+        $('#skin_select').change(function () {
+            $.post("show_champion_ajax.php", { champion_id: $('#id').val(), skin_id: $('#skin_select').val() })
+                .done(function (data) {
+                    // Change the image
+                    $('#background_container').css('background-image', 'url(' + data.image_url + ')');
+
+                    // Update hidden form fields
+                    $('#skin_status').val(data.ownership_status);
+
+                    // Change the visibility of the buttons
+                    if (data.ownership_status == 'notOwned') { // no record of skin, allow buy and wish
+                        $('#addCollectButton').show();
+                        $('#removeCollectButton').hide();
+                        $('#addWishButton').show();
+                        $('#removeWishButton').hide();
+                    }
+                    if (data.ownership_status == 'collected') { // we own the skin, only allow removal
+                        $('#addCollectButton').hide();
+                        $('#removeCollectButton').show();
+                        $('#addWishButton').hide();
+                        $('#removeWishButton').hide();
+                    }
+                    if (data.ownership_status == 'wished') { // skin on wishlist, remove from wish and update record
+                        $('#addCollectButton').show();
+                        $('#removeCollectButton').hide();
+                        $('#addWishButton').hide();
+                        $('#removeWishButton').show();
+                    }
+                    else {
+                        // error, invalid return result for ownership_status
+                    }
+                });
+        });
     });
 </script>
 
