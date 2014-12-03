@@ -9,10 +9,11 @@ require('_paths.php');
  * Date: 12/2/2014
  * Time: 3:57 PM
  */
+$old_avatar_img_url = $_POST['old_avatar_img'];
 
 move_uploaded_file($_FILES['avatar_img']['tmp_name'],
     "$user_avatar_img_path/{$_FILES['avatar_img']['name']}");
-unlink($user_avatar_img_path/$_POST['old_avatar_img']);
+//unlink("$user_avatar_img_path/$old_avatar_img_url"); //TODO: make this smarter to only remove ununsed profile images
 
 $visibility = $_POST['visibility'];
 $avatar_img = $_FILES['avatar_img']['name'];
@@ -21,6 +22,11 @@ $avatar_img = $_FILES['avatar_img']['name'];
     if ($avatar_img != null && $avatar_img != "") {
         $sql = <<<SQL
 update users set avatar_img='$avatar_img', visibility=$visibility where id=$user_id;
+SQL;
+}
+else {
+    $sql = <<<SQL
+update users set visibility=$visibility where id=$user_id;
 SQL;
 }
 
