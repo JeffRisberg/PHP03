@@ -1,6 +1,7 @@
 <?php $active = "profile"; ?>
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
+<?php include '_paths.php'; ?>
 
     <link rel="stylesheet" href="css/dark_styles.css"/>
 
@@ -13,6 +14,9 @@ if (array_key_exists('id', $_GET))
     $id = $_GET['id'];
 else
     $id = $user_id;
+
+// Check if we are viewing our own profile or another
+($id != $user_id ? $my_profile = false : $my_profile = true);
 
 $sql = <<<SQL
     SELECT *
@@ -52,16 +56,34 @@ SQL;
 if (!$friends_result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
 }
+
+$sql = <<<SQL
+   SELECT u.*
+   FROM user_friend uf
+   JOIN users u ON uf.friend_id = u.id
+   WHERE uf.user_id = $id
+   LIMIT 5
+SQL;
+
+if (!$friends_result = mysqli_query($db_connection, $sql)) {
+    die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+}
 ?>
 
 <?php if ($user != null) { ?>
+    <?php if (!$my_profile) { ?>
+        <div class="row">
+            <h2>Viewing <?php echo $user['user_name']; ?>'s Profile.</h2>
+            <a class="btn btn-priority" href="friend_request.php">Send Friend Request</a>
+        </div>
+    <?php } ?>
     <div class="row page-body">
         <div class="col-md-4 basic-info">
             <div>
                 <?php if ($user['avatar_img'] != null && $user['avatar_img'] != "")
-                    echo "<img src='uploads/users/{$user['avatar_img']}' height=200/>";
+                    echo "<img src='$user_avatar_img_path/{$user['avatar_img']}' height=200/>";
                 else
-                    echo "<img src='http://cdn.myanimelist.net/images/userimages/1422487.jpg' height=200>";
+                    echo "<img src='$user_avatar_default_img_path' height=200>";
                 ?>
             </div>
             <div class="personal-info">
