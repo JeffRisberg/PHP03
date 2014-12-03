@@ -11,7 +11,7 @@ require('_paths.php');
  */
 
 move_uploaded_file($_FILES['avatar_img']['tmp_name'],
-    "$users_avatar_img_path/{$_FILES['avatar_img']['name']}");
+    "$user_avatar_img_path/{$_FILES['avatar_img']['name']}");
 unlink($user_avatar_img_path/$_POST['old_avatar_img']);
 
 $visibility = $_POST['visibility'];
