@@ -136,7 +136,7 @@ if (!$visibility_settings_result) {
             <td class="row-heading">
                 Current Password:
             </td>
-            <td><input id="current_password" type="text"></textarea></td>
+            <td><input id="current_password" type="text" style="color: black"></td>
             <td>
                 <div id="current_password_error" class="error_label" style="display:none">Current Password Incorrect
                 </div>
@@ -146,7 +146,7 @@ if (!$visibility_settings_result) {
             <td class="row-heading">
                 New Password:
             </td>
-            <td><input id="new_password" name="new_password" type="text"></textarea></td>
+            <td><input id="new_password" name="new_password" type="text" style="color: black"></td>
             <td>
                 <div id="new_password_error" class="error_label" style="display:none">Password must be between 8-25
                     characters long
@@ -157,7 +157,7 @@ if (!$visibility_settings_result) {
             <td class="row-heading">
                 Re-enter New Password:
             </td>
-            <td><input id="re_password" type="text"></textarea></td>
+            <td><input id="re_password" type="text" style="color: black"></td>
             <td>
                 <div id="re_password_error" class="error_label" style="display:none">New Passwords do not match</div>
             </td>
@@ -201,18 +201,17 @@ if (!$visibility_settings_result) {
 
         $.post("profile_settings_password_ajax.php", { user_id: $('#user_id').val(), password: $('#current_password').val()})
             .done(function (data) {
-            //alert("login_signup_ajax callback: " + data);
-            if (!data.password_match) {
-                // User name was taken
-                $('#current_password_error').show();
-                error_in_form = true;
-            }
+                //alert("login_signup_ajax callback: " + data);
+                if (!data.password_match) {
+                    // User name was taken
+                    $('#current_password_error').show();
+                    error_in_form = true;
+                }
 
-            if (!error_in_form) {
-                // No errors we can submit the form
-                alert("submitting password form");
-                $('#change_password_form').submit();
-            }
-        });
+                if (!error_in_form) {
+                    // No errors we can submit the form
+                    $('#change_password_form').submit();
+                }
+            });
     });
 </script>
