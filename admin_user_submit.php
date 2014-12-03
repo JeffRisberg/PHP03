@@ -1,11 +1,13 @@
 <?php
 require('_connect.php');
+require('_paths.php');
 
 $id = null;
 if (array_key_exists('id', $_POST)) $id = $_POST['id'];
 
 move_uploaded_file($_FILES['avatar_img']['tmp_name'],
-    "uploads/users/{$_FILES['avatar_img']['name']}");
+    "$user_avatar_img_path/{$_FILES['avatar_img']['name']}");
+//unlink($user_avatar_img_path/$_POST['old_avatar_img']);
 
 $name = $_POST['name'];
 $visibility = $_POST['visibility'];

@@ -1,6 +1,7 @@
 <?php $active = "admin"; ?>
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
+<?php include '_paths.php'; ?>
 
 <style>
     table tr td {
@@ -53,8 +54,9 @@ if (!$visibility_settings_result) {
         <tr>
             <td>Avatar:</td>
             <td>
-                <?php if ($avatar_img) echo "<img src='uploads/users/$avatar_img' height=40/>"; ?>
+                <?php if ($avatar_img) echo "<img src='$user_avatar_img_path/$avatar_img' height=40/>"; ?>
                 <input type="file" name="avatar_img" value="" style="display: inline"/>
+                <input type="hidden" name="old_avatar_img" value="<?php echo $avatar_img; ?>"
             </td>
         </tr>
 

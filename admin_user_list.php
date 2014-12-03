@@ -1,6 +1,7 @@
 <?php $active = "admin"; ?>
 <?php include '_header.php'; ?>
 <?php include '_connect.php'; ?>
+<?php include '_paths.php'; ?>
 
 <?php
 $sql = <<<SQL
@@ -36,7 +37,7 @@ if (!$result) {
                 echo "<td width='100'><input type='checkbox' name='id[]' value='{$row['id']}'/></td>";
                 echo "<td>";
                 if ($row['avatar_img'])
-                    echo "<img src='uploads/users/${row['avatar_img']}' height=40/>";
+                    echo "<img src='$user_avatar_img_path/${row['avatar_img']}' height=40/>";
                 echo "</td>";
                 echo "<td>{$row['name']}</td><td>{$row['visibility']}</td>";
                 echo "<td>{$row['date_created']}</td>";
