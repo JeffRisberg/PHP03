@@ -229,7 +229,7 @@ insert into user_friend (user_id, friend_id, status_id) values (2, 1, 1);
 insert into user_friend (user_id, friend_id, status_id) values (1, 3, 1);
 
 insert into news (id, message, date_created)
-values (1, 'The Skin Store is now open.', '2014-11-01');
+values (1, 'The Skin Shop is now open.', '2014-11-01');
 insert into news (id, message, date_created)
 values (2, 'This site gives you the most current information about League of Legends skins!', '2014-11-14');
 insert into news (id, message, champion_id, date_created)

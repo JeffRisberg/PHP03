@@ -50,7 +50,7 @@
             $('#re_password_error').hide();
 
             // validate the inputs
-            if ($('#password').val().length <= 8 || $('#password').val().length > 25) {
+            if ($('#password').val().length < 8 || $('#password').val().length > 25) {
                 // Password length incorrect
                 $('#password_error').show();
                 error_in_form = true;
