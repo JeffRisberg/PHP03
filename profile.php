@@ -16,7 +16,7 @@ else
     $id = $user_id;
 
 // Check if we are viewing our own profile or another
-($id != $user_id ? $my_profile = false : $my_profile = true);
+$my_profile = ($id == $user_id) ? true : false;
 
 $sql = <<<SQL
     SELECT *
@@ -93,7 +93,9 @@ if (!$friends_result = mysqli_query($db_connection, $sql)) {
 
                 <p>Last Online: <?php echo $user['last_login'] ?></p>
 
-                <p><a href="profile_settings_form.php">Settings</a></p>
+                <?php if ($my_profile) { ?>
+                    <p><a href="profile_settings_form.php">Settings</a></p>
+                <?php } ?>
             </div>
         </div>
         <div class="col-md-5 col-md-offset-1">
