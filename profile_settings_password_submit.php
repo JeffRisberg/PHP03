@@ -12,7 +12,9 @@ require('_login.php');
 $new_password = $_POST['new_password'];
 $user_id = $_POST['user_id'];
 
-        $sql = <<<SQL
+$new_password = password_hash($new_password, PASSWORD_DEFAULT);
+
+$sql = <<<SQL
 update users set password='$new_password' where id=$user_id;
 SQL;
 

@@ -51,9 +51,11 @@ if (!$visibility_settings_result) {
     table tr td {
         padding: 5px;
     }
+
     .row-heading {
         width: 110;
     }
+
     .settings-header {
         font-weight: bold;
         font-size: 16px;
@@ -67,7 +69,7 @@ if (!$visibility_settings_result) {
     }
 
     .error_label {
-        color:red;
+        color: red;
         padding-left: 5px;
     }
 </style>
@@ -76,7 +78,9 @@ if (!$visibility_settings_result) {
 
     <table>
         <tr>
-            <td colspan="2"><div class="settings-header">General Settings</div></td>
+            <td colspan="2">
+                <div class="settings-header">General Settings</div>
+            </td>
         </tr>
         <tr>
             <td class="row-heading">Username:</td>
@@ -133,21 +137,30 @@ if (!$visibility_settings_result) {
                 Current Password:
             </td>
             <td><input id="current_password" type="text"></textarea></td>
-            <td><div id="current_password_error" class="error_label" style="display:none">Current Password Incorrect</div></td>
+            <td>
+                <div id="current_password_error" class="error_label" style="display:none">Current Password Incorrect
+                </div>
+            </td>
         </tr>
         <tr>
             <td class="row-heading">
                 New Password:
             </td>
             <td><input id="new_password" name="new_password" type="text"></textarea></td>
-            <td><div id="new_password_error" class="error_label" style="display:none">Password must be between 8-25 characters long</div></td>
+            <td>
+                <div id="new_password_error" class="error_label" style="display:none">Password must be between 8-25
+                    characters long
+                </div>
+            </td>
         </tr>
         <tr>
             <td class="row-heading">
                 Re-enter New Password:
             </td>
             <td><input id="re_password" type="text"></textarea></td>
-            <td><div id="re_password_error" class="error_label" style="display:none">New Passwords do not match</div></td>
+            <td>
+                <div id="re_password_error" class="error_label" style="display:none">New Passwords do not match</div>
+            </td>
         </tr>
         <tr>
             <td colspan="2">&nbsp;</td>
@@ -173,7 +186,7 @@ if (!$visibility_settings_result) {
         $('#re_password_error').hide();
 
         // validate the inputs
-        if ($('#new_password').val().length <= 8 || $('#new_password').val().length > 25) {
+        if ($('#new_password').val().length < 8 || $('#new_password').val().length > 25) {
             // Password length incorrect
 
             $('#new_password_error').show();
@@ -187,7 +200,7 @@ if (!$visibility_settings_result) {
         }
 
         $.post("profile_settings_password_ajax.php", { user_id: $('#user_id').val(), password: $('#current_password').val()})
-            .done (function (data) {
+            .done(function (data) {
             //alert("login_signup_ajax callback: " + data);
             if (!data.password_match) {
                 // User name was taken
