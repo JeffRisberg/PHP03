@@ -48,7 +48,7 @@ $num_champions = $result->num_rows;
 
 <div class="page-body">
     <div class="title-header">
-        <select>
+        <select id="search_type">
             <option <?php echo ($search_type == "all") ? "selected" : "" ?> value="all">All</option>
             <option <?php echo ($search_type == "myList") ? "selected" : "" ?> value="myList">My List</option>
             <option <?php echo ($search_type == "myCollection") ? "selected" : "" ?> value="myCollection">My
@@ -77,3 +77,13 @@ $num_champions = $result->num_rows;
         </table>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#search_type').change(
+            function () {
+                search_type = $('#search_type').val();
+                window.location.href = ('catalog.php?search_type=' + search_type);
+            })
+    });
+</script>
