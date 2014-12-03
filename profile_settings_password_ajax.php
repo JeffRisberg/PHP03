@@ -1,13 +1,6 @@
 <?php include '_connect.php'; ?>
 
 <?php
-/**
- * Created by PhpStorm.
- * User: Brandon
- * Date: 12/2/2014
- * Time: 1:52 PM
- */
-
 $user_id = $_POST['user_id'];
 $password = $_POST['password'];
 
@@ -23,7 +16,7 @@ if (!$results = mysqli_query($db_connection, $sql)) {
 $password_match = false;
 if ($results->num_rows != 0) {
     $user = $results->fetch_assoc();
-    if ($user['password'] == $password) { // TODO: improve authentication to be better than plain text passwords
+    if (password_verify($password, $user['password'])) {
         $password_match = true;
     }
 }

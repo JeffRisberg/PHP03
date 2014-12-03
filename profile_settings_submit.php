@@ -18,7 +18,6 @@ move_uploaded_file($_FILES['avatar_img']['tmp_name'],
 $visibility = $_POST['visibility'];
 $avatar_img = $_FILES['avatar_img']['name'];
 
-
 if ($avatar_img != null && $avatar_img != "") {
     $sql = <<<SQL
 update users set avatar_img='$avatar_img', visibility=$visibility where id=$user_id;

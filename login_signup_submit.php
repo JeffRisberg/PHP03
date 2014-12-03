@@ -8,6 +8,8 @@ $user_name = $_REQUEST['user_name'];
 $password = $_REQUEST['password'];
 $fallback_url = $_REQUEST['fallback_url'];
 
+$new_password = password_hash($new_password, PASSWORD_DEFAULT);
+
 $sql = <<<SQL
 INSERT INTO users (user_name, password, is_admin, visibility, date_created, last_updated)
 VALUES ('$user_name', '$password', false, 1, now(), now());
@@ -33,7 +35,7 @@ SQL;
 
     if ($result->num_rows != 0) {
         $row = $result->fetch_assoc();
-        if ($row['password'] == $password) { // TODO: improve authentication beyond plain text passwords
+        if (password_verify($password, $row['password'])) {
             session_start();
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['user_name'] = $row['user_name'];

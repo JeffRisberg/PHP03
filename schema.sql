@@ -106,21 +106,21 @@ create table user_champion (
 	AUTO_INCREMENT =1;
 
 create table friend_status (
-  id   INT(11)     NOT NULL AUTO_INCREMENT,
-  name VARCHAR(55) NOT NULL,
-  PRIMARY KEY (id)
+	id   INT(11)     NOT NULL AUTO_INCREMENT,
+	name VARCHAR(55) NOT NULL,
+	PRIMARY KEY (id)
 )
-  ENGINE =InnoDB
-  DEFAULT CHARSET =latin1;
+	ENGINE =InnoDB
+	DEFAULT CHARSET =latin1;
 
 create table user_friend (
 	user_id   int(11) NOT NULL,
 	friend_id int(11) NOT NULL,
-  status_id int(11) NOT NULL,
+	status_id int(11) NOT NULL,
 	PRIMARY KEY (user_id, friend_id),
 	FOREIGN KEY (user_id) REFERENCES users (id),
 	FOREIGN KEY (friend_id) REFERENCES users (id),
-  FOREIGN KEY (status_id) REFERENCES friend_status (id)
+	FOREIGN KEY (status_id) REFERENCES friend_status (id)
 )
 	ENGINE =InnoDB
 	DEFAULT CHARSET =latin1;
@@ -197,11 +197,14 @@ insert into skins (id, name, champion_id, is_default, img_url, date_created, las
 values (10, 'Void', 1, false, 'skin4.gif', now(), now());
 
 insert into users (user_name, password, visibility, is_admin, last_login, date_created, last_updated)
-values ('Brandon', 'abcd', 1, true, '2014-11-27 14:23:45', '2014-11-06 14:23:45', '2014-11-28 09:55:45');
+values ('Brandon', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 1, true, '2014-11-27 14:23:45',
+				'2014-11-06 14:23:45', '2014-11-28 09:55:45');
 insert into users (user_name, password, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
-values ('Jeffrey', 'abcd', 'jeff.jpg', 1, false, '2014-11-26 22:09:44', '2014-11-12 22:09:44', '2014-11-27 12:32:34');
+values ('Jeffrey', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 'jeff.jpg', 1, false,
+				'2014-11-26 22:09:44', '2014-11-12 22:09:44', '2014-11-27 12:32:34');
 insert into users (user_name, password, visibility, is_admin, last_login, date_created, last_updated)
-values ('Lauren', 'abcd', 2, false, '2014-11-02 02:44:23', '2014-10-30 02:44:09', '2014-11-03 20:06:32');
+values ('Lauren', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 2, false, '2014-11-02 02:44:23',
+				'2014-10-30 02:44:09', '2014-11-03 20:06:32');
 
 insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
 values (1, 1, 'collected', now());

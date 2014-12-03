@@ -20,7 +20,7 @@ if (!$result = mysqli_query($db_connection, $sql)) {
 
 if ($result->num_rows != 0) {
     $row = $result->fetch_assoc();
-    if ($row['password'] == $password) { // TODO: improve authentication beyond plain text passwords
+    if (password_verify($password, $row['password'])) {
         session_start();
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['user_name'] = $row['user_name'];
@@ -28,7 +28,7 @@ if ($result->num_rows != 0) {
 
         $sql = 'UPDATE users SET last_login = now() WHERE id=' . $row['id'];
         $stmt = mysqli_prepare($db_connection, $sql);
-        var_dump(mysqli_stmt_execute($stmt));
+        mysqli_stmt_execute($stmt);
 
         header('Location: index.php');
     } else {
