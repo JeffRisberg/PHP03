@@ -43,11 +43,30 @@ SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_
 LEFT JOIN champion_roles R ON c.role_id = r.id
 SQL;
 
-if (!$result = mysqli_query($db_connection, $sql)) {
+if (!$champions_result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
 }
 
-$num_champions = $result->num_rows;
+$sql = <<<SQL
+    SELECT champion_id, count(user_id) as user_count
+    FROM user_champion
+    JOIN champions ON champion_id = champions.id
+    GROUP BY champion_id
+    ORDER BY COUNT(user_id) DESC
+SQL;
+
+if (!$trending_champions_result = mysqli_query($db_connection, $sql)) {
+    die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+}
+
+$champion_user_counts = array();
+
+while ($row = $trending_champions_result->fetch_assoc()) {
+    $champion_id = $row['champion_id'];
+    $user_count = $row['user_count'];
+
+    $champion_user_counts[$champion_id] = $user_count;
+}
 ?>
 
 <div class="page-body">
@@ -67,17 +86,27 @@ $num_champions = $result->num_rows;
     <div class="catalog-list">
         <table>
             <?php
-            while ($row = $result->fetch_assoc()) {
+            while ($row = $champions_result->fetch_assoc()) {
+                $champion_id = $row['id'];
                 echo '<div class="col-md-2 champion-icon">';
                 echo '<figure>';
                 echo '<div style="width: 120px">';
-                echo '<a href="show_champion.php?id=' . $row['id'] . '">';
+                echo '<a href="show_champion.php?id=' . $champion_id . '">';
                 echo '<img src="' . $row['icon_img_url'] . '" style="align-content: center">';
                 echo '</a>';
-                echo '<figcaption style="align-content: center">' . $row['name'] . '</figcaption>';
+                echo '<figcaption style="align-content: center">';
+                echo '<a href="show_champion.php?id=' . $champion_id . '">';
+                echo $row['name'];
+                echo '</a>';
+                echo '</figcaption>';
                 echo '</div>';
                 echo '</figure>';
-                echo '<div class="tongue-content">' . $row['role'] . '<br/>' . $row['title'] . '</div>';
+                echo '<div class="tongue-content">';
+                echo $row['role'] . '<br/><br/>' . $row['title'];
+                if (array_key_exists($champion_id, $champion_user_counts)) {
+                    echo '<br/>' . $champion_user_counts[$champion_id] . ' favorites';
+                }
+                echo '</div>';
                 echo '</div>';
             }
             ?>
