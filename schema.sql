@@ -238,14 +238,14 @@ values (2, 2, now());
 insert into user_champion (user_id, champion_id, date_created)
 values (3, 3, now());
 
-insert into friend_request_status (id, name, date_created) values (1, 'confirmed', now());
+insert into friend_request_status (id, name) values (1, 'confirmed');
 insert into friend_request_status (id, name) values (2, 'requested');
 
-insert into user_friend (user_id, friend_id, date_created, last_updated) values (2, 3, now(), now());
-insert into user_friend (user_id, friend_id, date_created, last_updated) values (3, 2, now(), now());
+insert into user_friend (user_id, friend_id, date_created) values (2, 3, now());
+insert into user_friend (user_id, friend_id, date_created) values (3, 2, now());
 
-insert into user_friend_request (user_id, friend_id, status_id) values (2, 1, 2);
-insert into user_friend_request (user_id, friend_id, status_id) values (3, 1, 2);
+insert into user_friend_request (user_id, friend_id, status_id, date_created, last_updated) values (2, 1, 2, now(), now());
+insert into user_friend_request (user_id, friend_id, status_id, date_created, last_updated) values (3, 1, 2, now(), now());
 
 insert into news (id, message, date_created)
 values (1, 'The Skin Shop is now open.', '2014-11-01');
