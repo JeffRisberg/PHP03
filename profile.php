@@ -77,6 +77,9 @@ if (!$friends_result = mysqli_query($db_connection, $sql)) {
             <a class="btn btn-priority" href="friend_request.php">Send Friend Request</a>
         </div>
     <?php } ?>
+    <div class="row">
+        <a class="btn btn-priority" href="profile_list_requests.php">Friend Requests</a>
+    </div>
     <div class="row page-body">
         <div class="col-md-4 basic-info">
             <div>

@@ -227,9 +227,9 @@ values (3, 3, now());
 insert into friend_status (id, name) values (1, 'confirmed');
 insert into friend_status (id, name) values (2, 'requested');
 
-insert into user_friend (user_id, friend_id, status_id) values (1, 2, 1);
-insert into user_friend (user_id, friend_id, status_id) values (2, 1, 1);
-insert into user_friend (user_id, friend_id, status_id) values (1, 3, 1);
+insert into user_friend (user_id, friend_id, status_id) values (2, 1, 2);
+insert into user_friend (user_id, friend_id, status_id) values (3, 1, 2);
+insert into user_friend (user_id, friend_id, status_id) values (2, 3, 1);
 
 insert into news (id, message, date_created)
 values (1, 'The Skin Shop is now open.', '2014-11-01');
