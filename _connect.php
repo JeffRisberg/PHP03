@@ -9,6 +9,7 @@
 // localhost testing credentials
 $user = "developer";
 $password = "123456";
+//$password = "a83gf5CdOUTG"; on theRisbergFamily.com php03
 $host = "localhost";
 $db_name = "php03";
 
