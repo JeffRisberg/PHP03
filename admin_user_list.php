@@ -5,7 +5,7 @@
 
 <?php
 $sql = <<<SQL
-   SELECT u.id as id, u.user_name as name, u.avatar_img as avatar_img, vs.name as visibility, u.date_created as date_created
+   SELECT u.id as id, u.user_name as user_name, u.name as name, u.avatar_img as avatar_img, vs.name as visibility, u.date_created as date_created
    FROM users u
    JOIN visibility_settings vs ON u.visibility = vs.id
 SQL;
@@ -26,6 +26,7 @@ if (!$result) {
             <tr>
                 <th>Select</th>
                 <th>Avatar</th>
+                <th>Username</th>
                 <th>Name</th>
                 <th>Visibility</th>
                 <th>Date Created</th>
@@ -39,7 +40,9 @@ if (!$result) {
                 if ($row['avatar_img'])
                     echo "<img src='$user_avatar_img_path/${row['avatar_img']}' height=40/>";
                 echo "</td>";
-                echo "<td>{$row['name']}</td><td>{$row['visibility']}</td>";
+                echo "<td>{$row['user_name']}</td>";
+                echo "<td>{$row['name']}</td>";
+                echo "<td>{$row['visibility']}</td>";
                 echo "<td>{$row['date_created']}</td>";
                 echo "<td><a href='admin_user_form.php?id={$row['id']}'>Edit</a></td>";
                 echo "</tr>";
@@ -47,6 +50,7 @@ if (!$result) {
             ?>
             <tr>
                 <td><input type="submit" value="Delete Selected"/></td>
+                <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

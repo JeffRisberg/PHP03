@@ -24,7 +24,8 @@ if ($id != null) { // Edit
     }
 
     $row = mysqli_fetch_array($result);
-    $name = $row['user_name'];
+    $user_name = $row['user_name'];
+    $name = $row['name'];
     $avatar_img = $row['avatar_img'];
     $visibility = $row['visibility'];
 } else { // Edit
@@ -46,6 +47,11 @@ if (!$visibility_settings_result) {
 <form action="admin_user_submit.php" method="POST" enctype="multipart/form-data">
 
     <table>
+        <tr>
+            <td>Username:</td>
+            <td><input type="text" name="user_name" value="<?php echo $user_name ?>"/></td>
+        </tr>
+
         <tr>
             <td>Name:</td>
             <td><input type="text" name="name" value="<?php echo $name ?>"/></td>
