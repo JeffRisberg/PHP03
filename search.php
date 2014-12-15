@@ -50,7 +50,7 @@ if ($search_type == "Players") {
     $sql = <<<SQL
     SELECT id, user_name, avatar_img
     FROM users
-    WHERE user_name LIKE '%$search_str%' and visibility != 2
+    WHERE user_name LIKE '%$search_str%' AND visibility != 2
     LIMIT 10
 SQL;
 
