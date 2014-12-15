@@ -89,7 +89,7 @@ if (!$visibility_settings_result) {
 
         <tr>
             <td class="row-heading">Name:</td>
-            <td><input type="text" name="name" value="<?php echo $name; ?>" style="color: black"/></td>
+            <td><input type="text" name="name" value="<?php echo $name ?>" style="color: black"/></td>
         </tr>
 
         <tr>

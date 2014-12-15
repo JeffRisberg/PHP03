@@ -27,7 +27,8 @@ where id=$user_id;
 SQL;
 } else {
     $sql = <<<SQL
-update users set visibility=$visibility where id=$user_id;
+update users set visibility=$visibility, name='$name'
+where id=$user_id;
 SQL;
 }
 
