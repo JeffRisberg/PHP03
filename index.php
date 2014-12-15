@@ -63,7 +63,7 @@
             and intensity of an RTS with RPG elements. Two teams of powerful champions, each with
             a unique design and playstyle, battle head-to-head across multiple battlefields and game
             modes. With an ever-expanding roster of champions, frequent updates and a thriving tournament
-            scene, League of Legends offers endless replayability for players of every skill level..
+            scene, League of Legends offers endless replayability for players of every skill level.
         </p>
     </div>
     <div class="col-md-7 col-md-offset-1" style="padding: 5px">
