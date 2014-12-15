@@ -16,14 +16,16 @@ else
 
 if ($catalog_search_type == "myList")
     $sql = <<<SQL
-SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role FROM champions c
+SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role
+FROM champions c
 LEFT JOIN champion_roles R ON c.role_id = r.id
 LEFT JOIN user_champion uc ON uc.champion_id = c.id
 WHERE uc.user_id = $user_id
 SQL;
 else if ($catalog_search_type == "myCollection")
     $sql = <<<SQL
-SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role FROM champions c
+SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role
+FROM champions c
 LEFT JOIN champion_roles R ON c.role_id = r.id
 LEFT JOIN skins s ON s.champion_id = c.id
 LEFT JOIN user_skin_collection usc ON usc.skin_id = s.id
@@ -31,7 +33,8 @@ WHERE usc.user_id = $user_id and usc.ownership_status = 'collected'
 SQL;
 else if ($catalog_search_type == "myWishList")
     $sql = <<<SQL
-SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role FROM champions c
+SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role
+FROM champions c
 LEFT JOIN champion_roles R ON c.role_id = r.id
 LEFT JOIN skins s ON s.champion_id = c.id
 LEFT JOIN user_skin_collection usc ON usc.skin_id = s.id
@@ -39,7 +42,8 @@ WHERE usc.user_id = $user_id and usc.ownership_status = 'wished'
 SQL;
 else // all
     $sql = <<<SQL
-SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role FROM champions c
+SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role
+FROM champions c
 LEFT JOIN champion_roles R ON c.role_id = r.id
 SQL;
 

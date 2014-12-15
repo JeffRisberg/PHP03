@@ -16,8 +16,9 @@
 
 
 $sql = <<<SQL
-SELECT user_id
-FROM user_friend_request
+SELECT u.id AS user_id, u.user_name AS user_name, u.avatar_img AS avatar_img
+FROM user_friend_request ufr
+LEFT JOIN users u ON ufr.user_id = u.id
 WHERE friend_id=$user_id AND status_id=1
 LIMIT 10
 SQL;
@@ -36,12 +37,15 @@ if (!$friend_request_results = mysqli_query($db_connection, $sql)) {
         echo '<tr class="friend-request-result">';
         echo '<td style="padding: 10px">';
         echo '<a href="profile.php?id=' . $row['user_id'] . '">';
-        echo 'row[name]';
+        echo $row['user_name'];
         echo '</a>';
         echo '</td>';
         echo '<td style="padding: 10px">';
         echo '<a href="profile.php?id=' . $row['user_id'] . '">';
-        echo '<img height="40" src="' . $row['avatar_img'] . '"/>';
+        if ($row['avatar_img'] != null && $row['avatar_img'] != "")
+            echo "<img src='$user_avatar_img_path/{$row['avatar_img']}' height=40/>";
+        else
+            echo "<img src='$user_avatar_default_img_path' height=40>";
         echo '</a>';
         echo '</td>';
         echo '</tr>';
