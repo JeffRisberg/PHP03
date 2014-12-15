@@ -5,14 +5,15 @@ ini_set("display_errors", 1);
 include '_connect.php';
 
 $user_name = $_REQUEST['user_name'];
+$name = $_REQUEST['name'];
 $password = $_REQUEST['password'];
 $fallback_url = $_REQUEST['fallback_url'];
 
-$new_password = password_hash($new_password, PASSWORD_DEFAULT);
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 $sql = <<<SQL
-INSERT INTO users (user_name, password, is_admin, visibility, date_created, last_updated)
-VALUES ('$user_name', '$password', false, 1, now(), now());
+INSERT INTO users (user_name, password, name, is_admin, visibility, date_created, last_updated)
+VALUES ('$user_name', '$hashed_password', '$name', false, 1, now(), now());
 SQL;
 
 if (!$result = mysqli_query($db_connection, $sql)) {
