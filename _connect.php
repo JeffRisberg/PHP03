@@ -12,5 +12,11 @@ $password = "123456";
 $host = "localhost";
 $db_name = "php03";
 
+// USCITP deployment credentials
+//$user = "risberg_php03";
+//$password = "php03developer";
+//$host = "uscitp.com";
+//$db_name = "risberg_php03";
+
 $db_connection = mysqli_connect($host, $user, $password, $db_name);
 ?>

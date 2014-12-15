@@ -1,3 +1,5 @@
+<?php include '_login.php'; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +11,6 @@
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<?php include '_login.php'; ?>
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
