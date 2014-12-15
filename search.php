@@ -54,17 +54,17 @@ if ($search_type == "Users") {
     LIMIT 10
 SQL;
 
-    if (!$player_search_result = mysqli_query($db_connection, $sql)) {
+    if (!$user_search_result = mysqli_query($db_connection, $sql)) {
         die('There was an error running the query [' . mysqli_error($db_connection) . ']');
     }
     ?>
 
-    <h3>Player Search Results:</h3>
+    <h3>User Search Results:</h3>
 
     <table>
         <?php
-        while ($row = $player_search_result->fetch_assoc()) {
-            echo '<tr class="player-result">';
+        while ($row = $user_search_result->fetch_assoc()) {
+            echo '<tr class="user-result">';
             echo '<td style="padding: 10px">';
             echo '<a href="profile.php?id=' . $row['id'] . '">';
             echo $row['user_name'];
