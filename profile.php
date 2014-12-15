@@ -131,7 +131,7 @@ else {
         </div>
     <?php } ?>
     <div class="row page-body">
-        <div class="col-md-4 basic-info">
+        <div class="col-md-4 basic-info profile-leftcell">
             <div>
                 <?php if ($user['avatar_img'] != null && $user['avatar_img'] != "")
                     echo "<img src='$user_avatar_img_path/{$user['avatar_img']}' height=200/>";
