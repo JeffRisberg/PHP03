@@ -13,9 +13,34 @@ $action = $_GET['action'];
 $friend_id = $_GET['friend_id'];
 
 if ($action == 'accept') {
+    $sql = <<<SQL
+INSERT INTO user_friend (user_id, friend_id, date_created)
+VALUES ('$user_id', '$friend_id', now());
+SQL;
 
-}
-else if ($action == 'ignore') {
+    if (!$result = mysqli_query($db_connection, $sql)) {
+        die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+    }
+
+    $sql = <<<SQL
+INSERT INTO user_friend (user_id, friend_id, date_created)
+VALUES ('$friend_id', '$user_id', now());
+SQL;
+
+    if (!$result = mysqli_query($db_connection, $sql)) {
+        die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+    }
+
+    $sql = <<<SQL
+UPDATE user_friend_request SET status_id=2, date_updated = now()
+WHERE user_id = '$user_id' and friend_id='$friend_id'
+SQL;
+
+    if (!$result = mysqli_query($db_connection, $sql)) {
+        die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+    }
+
+} else if ($action == 'ignore') {
     $sql = <<<SQL
 UPDATE user_friend_request
 SET status_id=3, last_updated=now()
@@ -25,9 +50,7 @@ SQL;
     if (!$friend_request_result = mysqli_query($db_connection, $sql)) {
         die('There was an error running the query [' . mysqli_error($db_connection) . ']');
     }
-
 }
 
 header('Location: profile_list_requests.php');
-
 ?>
