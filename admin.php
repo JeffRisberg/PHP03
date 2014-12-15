@@ -14,4 +14,5 @@
 
 <div style="height: 200px"></div>
 
+<?php include '_disconnect.php'; ?>
 <?php include '_footer.php'; ?>

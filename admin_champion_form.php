@@ -74,4 +74,5 @@ if (!$champion_roles_result) {
     ?>
 </form>
 
+<?php include '_disconnect.php'; ?>
 <?php include '_footer.php'; ?>

@@ -12,4 +12,6 @@ for ($i = 0; $i < $numberOfIds; $i++) {
     }
 }
 
+include '_disconnect.php';
+
 header('Location: admin_champion_list.php');
