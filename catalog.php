@@ -131,3 +131,6 @@ while ($row = $trending_champions_result->fetch_assoc()) {
         $('.champion-icon').tongue({position: 'top', start_speed: 500, end_speed: 300});
     });
 </script>
+
+<?php include '_disconnect.php'; ?>
+<?php include '_footer.php'; ?>

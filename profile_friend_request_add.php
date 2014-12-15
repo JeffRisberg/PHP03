@@ -23,4 +23,6 @@ if (!$friend_request_result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
 }
 
+include '_disconnect.php';
+
 header('Location: profile.php?id=' . $friend_id);

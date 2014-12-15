@@ -22,4 +22,6 @@ if (!mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
 }
 
+include '_disconnect.php';
+
 header('Location: profile_settings_form.php');

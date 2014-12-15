@@ -24,6 +24,8 @@ if ($collection_result->num_rows > 0) {
 
 $image_url = "img/skins/{$skin_id}-1080px.jpg";
 
+include '_disconnect.php';
+
 // Generate a response, which is a JSON string
 header('Content-Type: application/json');
 

@@ -33,14 +33,15 @@ if ($result->num_rows != 0) {
         header('Location: index.php');
     } else {
         //$_POST['login_response'] = 'Incorrect password for user \'' . $user_name . '\'';
+        include '_footer.php';
+
         header("Location: $fallback_url?error=1");
         //die('Incorrect password for user \'' . $user_name . '\'');
     }
 } else {
     //$_POST['login_response'] = 'No user found for user name: ' . $user_name . '.';
+    include '_footer.php';
+
     header("Location: $fallback_url?error=2");
     //die('No user found for user name: ' . $user_name . '.');
 }
-
-
-

@@ -59,3 +59,6 @@ if (!$friend_request_results = mysqli_query($db_connection, $sql)) {
         echo '</tr>';
     }?>
 </table>
+
+<?php include '_disconnect.php'; ?>
+<?php include '_footer.php'; ?>

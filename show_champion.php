@@ -172,4 +172,5 @@ if (!$skin_result = mysqli_query($db_connection, $sql)) {
     });
 </script>
 
+<?php include '_disconnect.php'; ?>
 <?php include '_footer.php'; ?>

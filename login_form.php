@@ -35,4 +35,5 @@ if (array_key_exists('error', $_GET)) {
 }
 ?>
 
+<?php include '_disconnect.php'; ?>
 <?php include '_footer.php'; ?>

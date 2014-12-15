@@ -45,18 +45,16 @@ SQL;
             $stmt = mysqli_prepare($db_connection, $sql);
             var_dump(mysqli_stmt_execute($stmt));
         }
-    }
-    else {
+    } else {
         // no user found
         header('Location: ' . $fallback_url . '?error=1');
     }
 
+    include '_disconnect.php';
     header('Location: index.php'); // TODO: set this to the user settings page.
 } else {
     //$_POST['login_response'] = 'Failed to add new user \'' . $user_name . '\'';
+    include '_disconnect.php';
     //header('Location: login_signup_form.php?error=2');
     //die('Failed to add new user \'' . $user_name . '\'');
 }
-
-
-

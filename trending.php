@@ -46,4 +46,5 @@ if (!$trending_champions_result = mysqli_query($db_connection, $sql)) {
     }?>
 </table>
 
+<?php include '_disconnect.php'; ?>
 <?php include '_footer.php'; ?>

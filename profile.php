@@ -141,4 +141,5 @@ if (!$friends_result = mysqli_query($db_connection, $sql)) {
     </div>
 <?php } ?>
 
+<?php include '_disconnect.php'; ?>
 <?php include '_footer.php'; ?>

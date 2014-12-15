@@ -215,3 +215,6 @@ if (!$visibility_settings_result) {
             });
     });
 </script>
+
+<?php include '_disconnect.php'; ?>
+<?php include '_footer.php'; ?>

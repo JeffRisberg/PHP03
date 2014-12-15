@@ -21,6 +21,8 @@ if ($results->num_rows != 0) {
     }
 }
 
+include '_disconnect.php';
+
 // Generate a response, which is a JSON string
 header('Content-Type: application/json');
 

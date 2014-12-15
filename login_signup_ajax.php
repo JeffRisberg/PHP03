@@ -23,6 +23,8 @@ if ($results->num_rows != 0) {
     $user_name_free = false;
 }
 
+include '_disconnect.php';
+
 // Generate a response, which is a JSON string
 header('Content-Type: application/json');
 
