@@ -33,7 +33,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <form class="navbar-form" role="search" method="post" action="search.php" id="search-form" name="search-form">
+                    <form class="navbar-form" role="search" method="post" action="search.php" id="search-form"
+                          name="search-form">
+                        <select id="search_type" name="search_type" style="height: 33px">
+                            <option <?php if ($search_type == 'Champions') echo 'selected' ?>>Champions</option>
+                            <option <?php if ($search_type == 'Players') echo 'selected' ?>>Players</option>
+                        </select>
+
                         <div class="input-group">
                             <input type="text" class="form-control"
                                    placeholder="Search..." id="query" name="query"
