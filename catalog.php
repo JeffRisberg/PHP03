@@ -9,19 +9,19 @@
  -->
 
 <?php
-if (array_key_exists('search_type', $_GET))
-    $search_type = $_GET['search_type'];
+if (array_key_exists('catalog_search_type', $_GET))
+    $catalog_search_type = $_GET['catalog_search_type'];
 else
-    $search_type = "all";
+    $catalog_search_type = "all";
 
-if ($search_type == "myList")
+if ($catalog_search_type == "myList")
     $sql = <<<SQL
 SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role FROM champions c
 LEFT JOIN champion_roles R ON c.role_id = r.id
 LEFT JOIN user_champion uc ON uc.champion_id = c.id
 WHERE uc.user_id = $user_id
 SQL;
-else if ($search_type == "myCollection")
+else if ($catalog_search_type == "myCollection")
     $sql = <<<SQL
 SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role FROM champions c
 LEFT JOIN champion_roles R ON c.role_id = r.id
@@ -29,7 +29,7 @@ LEFT JOIN skins s ON s.champion_id = c.id
 LEFT JOIN user_skin_collection usc ON usc.skin_id = s.id
 WHERE usc.user_id = $user_id and usc.ownership_status = 'collected'
 SQL;
-else if ($search_type == "myWishList")
+else if ($catalog_search_type == "myWishList")
     $sql = <<<SQL
 SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role FROM champions c
 LEFT JOIN champion_roles R ON c.role_id = r.id
@@ -71,14 +71,14 @@ while ($row = $trending_champions_result->fetch_assoc()) {
 
 <div class="page-body">
     <div class="title-header">
-        <select id="search_type">
-            <option <?php echo ($search_type == "all") ? "selected" : "" ?> value="all">All</option>
+        <select id="catalog_search_type">
+            <option <?php echo ($catalog_search_type == "all") ? "selected" : "" ?> value="all">All</option>
             <?php if ($b_user_logged_in) { ?>
-                <option <?php echo ($search_type == "myList") ? "selected" : "" ?> value="myList">My List</option>
-                <option <?php echo ($search_type == "myCollection") ? "selected" : "" ?> value="myCollection">My
+                <option <?php echo ($catalog_search_type == "myList") ? "selected" : "" ?> value="myList">My List</option>
+                <option <?php echo ($catalog_search_type == "myCollection") ? "selected" : "" ?> value="myCollection">My
                     Collection
                 </option>
-                <option <?php echo ($search_type == "myWishList") ? "selected" : "" ?> value="myWishList">My Wish List
+                <option <?php echo ($catalog_search_type == "myWishList") ? "selected" : "" ?> value="myWishList">My Wish List
                 </option>
             <?php } ?>
         </select>
@@ -118,10 +118,11 @@ while ($row = $trending_champions_result->fetch_assoc()) {
 
 <script>
     $(document).ready(function () {
-        $('#search_type').change(
+        $('#catalog_search_type').change(
             function () {
-                search_type = $('#search_type').val();
-                window.location.href = ('catalog.php?search_type=' + search_type);
+                catalog_search_type = $('#catalog_search_type').val();
+                console.log(catalog_search_type);
+                window.location.href = ('catalog.php?catalog_search_type=' + catalog_search_type);
             });
         $('.champion-icon').tongue({position: 'top', start_speed: 500, end_speed: 300});
     });
