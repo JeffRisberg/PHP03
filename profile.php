@@ -69,6 +69,18 @@ if (!$friends_result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
 }
 
+$sql = <<<SQL
+   SELECT u.*, ufr.date_created
+   FROM user_friend_request ufr
+   JOIN users u ON ufr.friend_id = u.id
+   WHERE ufr.user_id = $id AND ufr.status_id = 1
+   LIMIT 5
+SQL;
+
+if (!$friends_pending_result = mysqli_query($db_connection, $sql)) {
+    die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+}
+
 // Check friend request status
 $b_friend_requested = false;
 $b_friended = false;
@@ -80,8 +92,7 @@ SQL;
 
 if (!$friend_status_result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
-}
-else {
+} else {
     if ($friend_status_result->num_rows != 0) {
         $b_friended = true;
     }
@@ -95,8 +106,7 @@ SQL;
 
 if (!$friend_status_result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
-}
-else {
+} else {
     if ($friend_status_result->num_rows != 0) {
         $row = $friend_status_result->fetch_assoc();
         if ($row['status_id'] == 1 || $row['status_id'] == 3) {
@@ -108,9 +118,14 @@ else {
 ?>
 
 <?php if ($user != null) { ?>
+    <?php if ($my_profile) { ?>
+        <div class="row">
+            <h2>Your Profile</h2>
+        </div>
+    <?php } ?>
     <?php if (!$my_profile) { ?>
         <div class="row">
-            <h2>Viewing <?php echo $user['user_name']; ?>'s Profile.</h2>
+            <h2>Viewing <?php echo $user['user_name']; ?>'s Profile</h2>
         </div>
     <?php } ?>
     <div class="row page-body">
@@ -123,27 +138,32 @@ else {
                 ?>
             </div>
             <div class="personal-info">
-                <p> Name: <?php echo $user['user_name'] ?></p>
+                <p>Name: <?php echo $user['name'] ?></p>
 
                 <p>Joined: <?php echo $user['date_created'] ?></p>
 
                 <p>Last Online: <?php echo $user['last_login'] ?></p>
 
                 <?php if ($my_profile) { ?>
-                    <p><a href="profile_list_requests.php">Friend Requests</a></p>
+                    <p><a href="profile_list_requests.php">Friend Requests Received</a></p>
                     <p><a href="profile_settings_form.php">Settings</a></p>
                 <?php } ?>
 
                 <?php if (!$my_profile) { ?>
                     <?php if ($b_friended) { ?>
                         <p><a href="">Remove Friend</a></p> <!-- TODO: Implement removal of friends -->
-                    <?php }
-                    else { ?>
+                    <?php
+                    } else {
+                        ?>
                         <?php if (!$b_friend_requested) { ?>
-                            <p><a href="profile_friend_request_addcancel.php?action=add&friend_id=<?php echo $id; ?>">Send Friend Request</a></p>
-                        <?php }
-                        else { ?>
-                            <p><a href="profile_friend_request_addcancel.php?action=cancel&friend_id=<?php echo $id; ?>">Cancel Friend Request</a></p>
+                            <p><a href="profile_friend_request_addcancel.php?action=add&friend_id=<?php echo $id; ?>">Send
+                                    Friend Request</a></p>
+                        <?php
+                        } else {
+                            ?>
+                            <p>
+                                <a href="profile_friend_request_addcancel.php?action=cancel&friend_id=<?php echo $id; ?>">Cancel
+                                    Friend Request</a></p>
                         <?php } ?>
                     <?php } ?>
                 <?php } ?>
@@ -175,6 +195,23 @@ else {
                             echo '<tr>';
                             echo '<td class="favorite-champ-list-element">';
                             echo '<a href="profile.php?id=' . $row['id'] . '">' . $row['user_name'] . '</a>';
+                            echo '</td>';
+                            echo '</tr>';
+                        } ?>
+                    </table>
+                </div>
+            <?php } ?>
+            <div style="height: 10px;"></div>
+            <?php if ($friends_pending_result->num_rows > 0) { ?>
+                <div class="detailed-info">
+                    <div class="title-header">Friend Requests Made</div>
+                    <table>
+                        <?php
+                        while ($row = $friends_pending_result->fetch_assoc()) {
+                            echo '<tr>';
+                            echo '<td class="favorite-champ-list-element">';
+                            echo '<a href="profile.php?id=' . $row['id'] . '">' . $row['user_name'] . '</a>';
+                            echo ' <span style="font-size: 14px">on ' . date("F j, Y", strtotime($row['date_created'])) . '</span>';
                             echo '</td>';
                             echo '</tr>';
                         } ?>

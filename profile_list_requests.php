@@ -29,7 +29,7 @@ if (!$friend_request_results = mysqli_query($db_connection, $sql)) {
 
 ?>
 
-<h3>Friend Requests:</h3>
+<h3>Friend Requests Received:</h3>
 
 <table>
     <?php
