@@ -111,12 +111,8 @@ else {
     <?php if (!$my_profile) { ?>
         <div class="row">
             <h2>Viewing <?php echo $user['user_name']; ?>'s Profile.</h2>
-            <a class="btn btn-priority" href="profile_friend_request_addcancel.php?friend_id=<?php echo $id; ?>">Send Friend Request</a>
         </div>
     <?php } ?>
-    <div class="row">
-        <a class="btn btn-priority" href="profile_list_requests.php">Friend Requests</a>
-    </div>
     <div class="row page-body">
         <div class="col-md-4 basic-info">
             <div>
