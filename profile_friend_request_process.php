@@ -33,7 +33,7 @@ SQL;
 
     $sql = <<<SQL
 UPDATE user_friend_request SET status_id=2, last_updated = now()
-WHERE user_id = $field_id and friend_id=$user_id
+WHERE user_id = $friend_id and friend_id=$user_id
 SQL;
 
     if (!$result = mysqli_query($db_connection, $sql)) {
