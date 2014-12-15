@@ -65,6 +65,7 @@ create table skins (
 create table users (
 	id           int(11)      NOT NULL AUTO_INCREMENT,
 	user_name    varchar(255) NOT NULL,
+  name         varchar(255) NOT NULL,
 	password     varchar(255) NOT NULL,
 	avatar_img   varchar(255) NULL,
 	visibility   int(11)      NOT NULL,
@@ -210,14 +211,14 @@ values (9, 'Frozen Terror Nocturn', 1, false, 'skin3.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
 values (10, 'Void', 1, false, 'skin4.gif', now(), now());
 
-insert into users (user_name, password, visibility, is_admin, last_login, date_created, last_updated)
-values ('Brandon', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 1, true, '2014-11-27 14:23:45',
+insert into users (user_name, password, name, visibility, is_admin, last_login, date_created, last_updated)
+values ('Brandon', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 'Brandon Risberg', 1, true, '2014-11-27 14:23:45',
 				'2014-11-06 14:23:45', '2014-11-28 09:55:45');
-insert into users (user_name, password, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
-values ('Jeffrey', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 'jeff.jpg', 1, false,
+insert into users (user_name, password, name, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
+values ('Jeffrey', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 'Jeffrey Risberg', 'jeff.jpg', 1, false,
 				'2014-11-26 22:09:44', '2014-11-12 22:09:44', '2014-11-27 12:32:34');
-insert into users (user_name, password, visibility, is_admin, last_login, date_created, last_updated)
-values ('Lauren', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 2, false, '2014-11-02 02:44:23',
+insert into users (user_name, password, name, visibility, is_admin, last_login, date_created, last_updated)
+values ('Lauren', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 'Lauren Risberg', 2, false, '2014-11-02 02:44:23',
 				'2014-10-30 02:44:09', '2014-11-03 20:06:32');
 
 insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
