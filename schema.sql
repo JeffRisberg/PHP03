@@ -134,7 +134,7 @@ create table user_friend_request (
   PRIMARY KEY (user_id, friend_id),
   FOREIGN KEY (user_id) REFERENCES users (id),
   FOREIGN KEY (friend_id) REFERENCES users (id),
-  FOREIGN KEY (status_id) REFERENCES friend_status (id)
+  FOREIGN KEY (status_id) REFERENCES friend_request_status (id)
 )
   ENGINE =InnoDB
   DEFAULT CHARSET =latin1;
