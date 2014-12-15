@@ -148,6 +148,10 @@ else {
 
                 <p>Last Online: <?php echo $user['last_login'] ?></p>
 
+                <p><a href="catalog.php?id=<?php echo $id ?>&catalog_search_type=myCollection">Skin Collection</a></p>
+
+                <p><a href="catalog.php?id=<?php echo $id ?>&catalog_search_type=myWishList">Wish List</a></p>
+
                 <?php if ($my_profile) { ?>
                     <p><a href="profile_list_requests.php">Friend Requests Received</a></p>
                     <p><a href="profile_settings_form.php">Settings</a></p>
