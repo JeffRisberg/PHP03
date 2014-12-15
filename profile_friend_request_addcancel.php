@@ -1,7 +1,7 @@
-<?php include '_connect.php'; ?>
-<?php include '_login.php'; ?>
-
 <?php
+include '_connect.php';
+include '_login.php';
+
 /**
  * Created by PhpStorm.
  * User: Brandon
