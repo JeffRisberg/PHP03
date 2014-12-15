@@ -15,12 +15,15 @@ move_uploaded_file($_FILES['avatar_img']['tmp_name'],
     "$user_avatar_img_path/{$_FILES['avatar_img']['name']}");
 //unlink("$user_avatar_img_path/$old_avatar_img_url"); //TODO: make this smarter to only remove unused profile images
 
+$name = $_POST['name'];
 $visibility = $_POST['visibility'];
 $avatar_img = $_FILES['avatar_img']['name'];
 
 if ($avatar_img != null && $avatar_img != "") {
     $sql = <<<SQL
-update users set avatar_img='$avatar_img', visibility=$visibility where id=$user_id;
+update users
+set avatar_img='$avatar_img', visibility=$visibility, name='$name'
+where id=$user_id;
 SQL;
 } else {
     $sql = <<<SQL

@@ -33,7 +33,7 @@ if ($user_result->num_rows > 0) {
     $user = $user_result->fetch_assoc();
 }
 
-$name = $user['user_name'];
+$name = $user['name'];
 $avatar_img = $user['avatar_img'];
 $visibility = $user['visibility'];
 
@@ -85,6 +85,11 @@ if (!$visibility_settings_result) {
         <tr>
             <td class="row-heading">Username:</td>
             <td><strong><?php echo $user_name; ?></strong></td>
+        </tr>
+
+        <tr>
+            <td class="row-heading">Name:</td>
+            <td><input type="text" name="name" value="<?php echo $name; ?>" style="color: black"/></td>
         </tr>
 
         <tr>
