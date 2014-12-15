@@ -4,6 +4,8 @@ ini_set("display_errors", 1);
 
 include '_connect.php';
 
+require_once 'passwordLib.php';
+
 $user_name = $_REQUEST['user_name'];
 $password = $_REQUEST['password'];
 $fallback_url = $_REQUEST['fallback_url'];

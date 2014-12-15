@@ -4,6 +4,8 @@ ini_set("display_errors", 1);
 
 include '_connect.php';
 
+require_once 'passwordLib.php';
+
 $user_name = $_REQUEST['user_name'];
 $name = $_REQUEST['name'];
 $password = $_REQUEST['password'];
@@ -44,7 +46,7 @@ SQL;
 
             $sql = 'UPDATE users SET last_login = now() WHERE id=' . $row['id'];
             $stmt = mysqli_prepare($db_connection, $sql);
-            var_dump(mysqli_stmt_execute($stmt));
+            mysqli_stmt_execute($stmt);
         }
     } else {
         // no user found
