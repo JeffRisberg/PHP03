@@ -17,8 +17,8 @@
 
 $sql = <<<SQL
 SELECT user_id
-FROM user_friend
-WHERE friend_id=$user_id AND status_id=2
+FROM user_friend_request
+WHERE friend_id=$user_id AND status_id=1
 LIMIT 10
 SQL;
 
