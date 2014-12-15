@@ -14,13 +14,35 @@ if (array_key_exists('catalog_search_type', $_GET))
 else
     $catalog_search_type = "all";
 
+if (array_key_exists('id', $_GET))
+    $id = $_GET['id'];
+else
+    $id = $user_id;
+
+// Check if we are viewing our own catalog or another
+$my_catalog = ($id == $user_id) ? true : false;
+
+$sql = <<<SQL
+    SELECT *
+    FROM users
+    WHERE id=$id
+SQL;
+
+if (!$user_result = mysqli_query($db_connection, $sql)) {
+    die('There was an error running the query [' . mysqli_error($db_connection) . ']');
+}
+$user = null;
+if ($user_result->num_rows > 0) {
+    $user = $user_result->fetch_assoc();
+}
+
 if ($catalog_search_type == "myList")
     $sql = <<<SQL
 SELECT c.id as id, c.name as name, c.title as title, c.icon_img_url as icon_img_url, r.name as role
 FROM champions c
 LEFT JOIN champion_roles R ON c.role_id = r.id
 LEFT JOIN user_champion uc ON uc.champion_id = c.id
-WHERE uc.user_id = $user_id
+WHERE uc.user_id = $id
 SQL;
 else if ($catalog_search_type == "myCollection")
     $sql = <<<SQL
@@ -29,7 +51,7 @@ FROM champions c
 LEFT JOIN champion_roles R ON c.role_id = r.id
 LEFT JOIN skins s ON s.champion_id = c.id
 LEFT JOIN user_skin_collection usc ON usc.skin_id = s.id
-WHERE usc.user_id = $user_id and usc.ownership_status = 'collected'
+WHERE usc.user_id = $id and usc.ownership_status = 'collected'
 SQL;
 else if ($catalog_search_type == "myWishList")
     $sql = <<<SQL
@@ -38,7 +60,7 @@ FROM champions c
 LEFT JOIN champion_roles R ON c.role_id = r.id
 LEFT JOIN skins s ON s.champion_id = c.id
 LEFT JOIN user_skin_collection usc ON usc.skin_id = s.id
-WHERE usc.user_id = $user_id and usc.ownership_status = 'wished'
+WHERE usc.user_id = $id and usc.ownership_status = 'wished'
 SQL;
 else // all
     $sql = <<<SQL
@@ -73,16 +95,26 @@ while ($row = $trending_champions_result->fetch_assoc()) {
 }
 ?>
 
+<?php if ($my_catalog) { ?>
+    <div class="row">
+        <h2>Your Collection</h2>
+    </div>
+<?php } ?>
+<?php if (!$my_catalog) { ?>
+    <div class="row">
+        <h2>Viewing <?php echo $user['user_name']; ?>'s Collection</h2>
+    </div>
+<?php } ?>
 <div class="catalog-heading">
+    <input id="id" type="hidden" value="<?php echo $id ?>"/>
     <div class="title-header">
         <select id="catalog_search_type">
             <option <?php echo ($catalog_search_type == "all") ? "selected" : "" ?> value="all">All</option>
             <?php if ($b_user_logged_in) { ?>
-                <option <?php echo ($catalog_search_type == "myList") ? "selected" : "" ?> value="myList">My List</option>
-                <option <?php echo ($catalog_search_type == "myCollection") ? "selected" : "" ?> value="myCollection">My
-                    Collection
+                <option <?php echo ($catalog_search_type == "myList") ? "selected" : "" ?> value="myList">Favorite Champions</option>
+                <option <?php echo ($catalog_search_type == "myCollection") ? "selected" : "" ?> value="myCollection">Skin Collection
                 </option>
-                <option <?php echo ($catalog_search_type == "myWishList") ? "selected" : "" ?> value="myWishList">My Wish List
+                <option <?php echo ($catalog_search_type == "myWishList") ? "selected" : "" ?> value="myWishList">Wish List
                 </option>
             <?php } ?>
         </select>
@@ -126,7 +158,7 @@ while ($row = $trending_champions_result->fetch_assoc()) {
             function () {
                 catalog_search_type = $('#catalog_search_type').val();
                 console.log(catalog_search_type);
-                window.location.href = ('catalog.php?catalog_search_type=' + catalog_search_type);
+                window.location.href = ('catalog.php?id=' + $('#id').val() + '&catalog_search_type=' + catalog_search_type);
             });
         $('.champion-icon').tongue({position: 'top', start_speed: 500, end_speed: 300});
     });
