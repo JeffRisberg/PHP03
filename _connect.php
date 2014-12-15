@@ -20,4 +20,3 @@ $db_name = "php03";
 //$db_name = "risberg_php03";
 
 $db_connection = mysqli_connect($host, $user, $password, $db_name);
-?>
