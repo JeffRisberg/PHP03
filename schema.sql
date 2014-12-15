@@ -240,6 +240,7 @@ values (3, 3, now());
 
 insert into friend_request_status (id, name) values (1, 'requested');
 insert into friend_request_status (id, name) values (2, 'confirmed');
+insert into friend_request_status (id, name) values (3, 'ignored');
 
 insert into user_friend (user_id, friend_id, date_created) values (2, 3, now());
 insert into user_friend (user_id, friend_id, date_created) values (3, 2, now());
