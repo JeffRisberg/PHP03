@@ -46,7 +46,7 @@ SQL;
 <?php } ?>
 
 <?php
-if ($search_type == "Players") {
+if ($search_type == "Users") {
     $sql = <<<SQL
     SELECT id, user_name, avatar_img
     FROM users

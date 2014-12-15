@@ -23,7 +23,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">the Skin Shop</a>
+            <a class="navbar-brand" href="index.php">MySkinList</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -37,7 +37,7 @@
                           name="search-form">
                         <select id="search_type" name="search_type" style="height: 33px">
                             <option <?php if ($search_type == 'Champions') echo 'selected' ?>>Champions</option>
-                            <option <?php if ($search_type == 'Players') echo 'selected' ?>>Players</option>
+                            <option <?php if ($search_type == 'Users') echo 'selected' ?>>Users</option>
                         </select>
 
                         <div class="input-group">

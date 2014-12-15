@@ -21,6 +21,11 @@
             <td><div id="user_name_error" class="error_label" style="display: none">User already exists with this user name.</div></td>
         </tr>
         <tr>
+            <td>Name:</td>
+            <td><input id="name" type="text" name="name"/></td>
+            <td><div id="name_error" class="error_label" style="display: none">Must enter a name.</div></td>
+        </tr>
+        <tr>
             <td>Password:</td>
             <td><input id="password" type="password" name="password"/></td>
             <td><div id="password_error" class="error_label" style="display: none">Password must be between 8-25 characters</div></td>
@@ -46,6 +51,7 @@
             // reset warnings
             var error_in_form = false;
             $('#user_name_error').hide();
+            $('#name_error').hide();
             $('#password_error').hide();
             $('#re_password_error').hide();
 
@@ -59,6 +65,12 @@
             if ($('#password').val() != $('#re_password').val()) {
                 // provided passwords did not match
                 $('#re_password_error').show();
+                error_in_form = true;
+            }
+
+            if ($('#name').val() == "") {
+                // provided passwords did not match
+                $('#name_error').show();
                 error_in_form = true;
             }
 

@@ -92,7 +92,8 @@ SQL;
 
 if (!$friend_status_result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
-} else {
+}
+else {
     if ($friend_status_result->num_rows != 0) {
         $b_friended = true;
     }
@@ -106,7 +107,8 @@ SQL;
 
 if (!$friend_status_result = mysqli_query($db_connection, $sql)) {
     die('There was an error running the query [' . mysqli_error($db_connection) . ']');
-} else {
+}
+else {
     if ($friend_status_result->num_rows != 0) {
         $row = $friend_status_result->fetch_assoc();
         if ($row['status_id'] == 1 || $row['status_id'] == 3) {
@@ -138,6 +140,8 @@ if (!$friend_status_result = mysqli_query($db_connection, $sql)) {
                 ?>
             </div>
             <div class="personal-info">
+                <p>User Name: <?php echo $user['user_name'] ?></p>
+
                 <p>Name: <?php echo $user['name'] ?></p>
 
                 <p>Joined: <?php echo $user['date_created'] ?></p>
@@ -152,18 +156,13 @@ if (!$friend_status_result = mysqli_query($db_connection, $sql)) {
                 <?php if (!$my_profile) { ?>
                     <?php if ($b_friended) { ?>
                         <p><a href="">Remove Friend</a></p> <!-- TODO: Implement removal of friends -->
-                    <?php
-                    } else {
-                        ?>
+                    <?php }
+                    else { ?>
                         <?php if (!$b_friend_requested) { ?>
-                            <p><a href="profile_friend_request_addcancel.php?action=add&friend_id=<?php echo $id; ?>">Send
-                                    Friend Request</a></p>
-                        <?php
-                        } else {
-                            ?>
-                            <p>
-                                <a href="profile_friend_request_addcancel.php?action=cancel&friend_id=<?php echo $id; ?>">Cancel
-                                    Friend Request</a></p>
+                            <p><a href="profile_friend_request_addcancel.php?action=add&friend_id=<?php echo $id; ?>">Send Friend Request</a></p>
+                        <?php }
+                        else { ?>
+                            <p><a href="profile_friend_request_addcancel.php?action=cancel&friend_id=<?php echo $id; ?>">Cancel Friend Request</a></p>
                         <?php } ?>
                     <?php } ?>
                 <?php } ?>
