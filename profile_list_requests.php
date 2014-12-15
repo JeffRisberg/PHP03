@@ -48,6 +48,14 @@ if (!$friend_request_results = mysqli_query($db_connection, $sql)) {
             echo "<img src='$user_avatar_default_img_path' height=40>";
         echo '</a>';
         echo '</td>';
+        echo '<td>';
+        echo '<a class="btn btn-success" href="profile_friend_request_process.php?action=accept&friend_id='
+            . $row['user_id'] . '">Accept</a>';
+        echo '</td>';
+        echo '<td>';
+        echo '<a class="btn btn-danger" href="profile_friend_request_process.php?action=ignore&friend_id='
+            . $row['user_id'] . '">Ignore</a>';
+        echo '</td>';
         echo '</tr>';
     }?>
 </table>
