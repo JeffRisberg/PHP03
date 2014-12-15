@@ -73,7 +73,7 @@ while ($row = $trending_champions_result->fetch_assoc()) {
 }
 ?>
 
-<div class="page-body">
+<div class="catalog-heading">
     <div class="title-header">
         <select id="catalog_search_type">
             <option <?php echo ($catalog_search_type == "all") ? "selected" : "" ?> value="all">All</option>

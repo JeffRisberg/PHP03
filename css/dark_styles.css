@@ -12,10 +12,23 @@ select {
 }
 
 .page-body {
+    border: 5px;
+    border-color: darkgray;
+    border-style: solid;
+    background-color: #5f5e66;
+}
+
+.catalog-heading {
     border: 1px;
     border-color: black;
     border-style: solid;
-    background-color: #E9F0F2;
+    background-color: gray;
+}
+
+.profile-leftcell {
+    border-width: 0px 2px 0px 0px;
+    border-color: darkgray;
+    border-style: solid;
 }
 
 .catalog-list {
@@ -36,7 +49,7 @@ figure figcaption {
     border-width: 0 0 3px 0;
     border-color: black;
     font-size: 20px;
-    background-color: red;
+    background-color: gray;
     color: white;
 }
 
