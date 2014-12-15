@@ -1,7 +1,7 @@
-<?php include '_connect.php'; ?>
-<?php include '_login.php'; ?>
-
 <?php
+include '_connect.php';
+include '_login.php';
+
 $champion_id = $_POST['champion_id'];
 $skin_id = $_POST['skin_id'];
 

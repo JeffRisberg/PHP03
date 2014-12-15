@@ -1,6 +1,6 @@
-<?php include '_connect.php'; ?>
-
 <?php
+include '_connect.php';
+
 $user_id = $_POST['user_id'];
 $password = $_POST['password'];
 

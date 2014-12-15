@@ -1,7 +1,7 @@
-<?php include '_connect.php'; ?>
-<?php include '_login.php'; ?>
-
 <?php
+include '_connect.php';
+include '_login.php';
+
 $champion_id = $_POST['champion_id'];
 
 //Check if the user has already favorited this champion
