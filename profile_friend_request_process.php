@@ -32,7 +32,7 @@ SQL;
     }
 
     $sql = <<<SQL
-UPDATE user_friend_request SET status_id=2, date_updated = now()
+UPDATE user_friend_request SET status_id=2, last_updated = now()
 WHERE user_id = '$user_id' and friend_id='$friend_id'
 SQL;
 
