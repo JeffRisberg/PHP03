@@ -96,9 +96,11 @@ while ($row = $trending_champions_result->fetch_assoc()) {
 ?>
 
 <?php if ($my_catalog) { ?>
-    <div class="row">
-        <h2>Your Collection</h2>
-    </div>
+    <?php if ($b_user_logged_in) { ?>
+        <div class="row">
+            <h2>Your Collection</h2>
+        </div>
+    <?php } ?>
 <?php } ?>
 <?php if (!$my_catalog) { ?>
     <div class="row">
