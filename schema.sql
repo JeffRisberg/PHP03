@@ -1,7 +1,7 @@
 drop table if exists news;
 drop table if exists user_friend_request;
 drop table if exists user_friend;
-drop table if exists friend_status;
+drop table if exists friend_request_status;
 drop table if exists user_champion;
 drop table if exists user_skin_collection;
 drop table if exists users;
@@ -106,7 +106,7 @@ create table user_champion (
 	DEFAULT CHARSET =latin1
 	AUTO_INCREMENT =1;
 
-create table friend_status (
+create table friend_request_status (
 	id   INT(11)     NOT NULL AUTO_INCREMENT,
 	name VARCHAR(55) NOT NULL,
 	PRIMARY KEY (id)
@@ -117,6 +117,7 @@ create table friend_status (
 create table user_friend (
 	user_id   int(11) NOT NULL,
 	friend_id int(11) NOT NULL,
+  date_created datetime NOT NULL,
 	PRIMARY KEY (user_id, friend_id),
 	FOREIGN KEY (user_id) REFERENCES users (id),
 	FOREIGN KEY (friend_id) REFERENCES users (id)
@@ -128,6 +129,8 @@ create table user_friend_request (
   user_id   int(11) NOT NULL,
   friend_id int(11) NOT NULL,
   status_id int(11) NOT NULL,
+  date_created datetime NOT NULL,
+  last_updated datetime NOT NULL,
   PRIMARY KEY (user_id, friend_id),
   FOREIGN KEY (user_id) REFERENCES users (id),
   FOREIGN KEY (friend_id) REFERENCES users (id),
@@ -235,11 +238,11 @@ values (2, 2, now());
 insert into user_champion (user_id, champion_id, date_created)
 values (3, 3, now());
 
-insert into friend_status (id, name) values (1, 'confirmed');
-insert into friend_status (id, name) values (2, 'requested');
+insert into friend_request_status (id, name, date_created) values (1, 'confirmed', now());
+insert into friend_request_status (id, name) values (2, 'requested');
 
-insert into user_friend (user_id, friend_id) values (2, 3);
-insert into user_friend (user_id, friend_id) values (3, 2);
+insert into user_friend (user_id, friend_id, date_created, last_updated) values (2, 3, now(), now());
+insert into user_friend (user_id, friend_id, date_created, last_updated) values (3, 2, now(), now());
 
 insert into user_friend_request (user_id, friend_id, status_id) values (2, 1, 2);
 insert into user_friend_request (user_id, friend_id, status_id) values (3, 1, 2);
