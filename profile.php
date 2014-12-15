@@ -123,7 +123,9 @@ else {
                 ?>
             </div>
             <div class="personal-info">
-                <p> Name: <?php echo $user['user_name'] ?></p>
+                <p> User Name: <?php echo $user['user_name'] ?></p>
+
+                <p> Name: <?php echo $user['name'] ?></p>
 
                 <p>Joined: <?php echo $user['date_created'] ?></p>
 
