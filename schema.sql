@@ -1,4 +1,5 @@
 drop table if exists news;
+drop table if exists user_friend_request;
 drop table if exists user_friend;
 drop table if exists friend_status;
 drop table if exists user_champion;
@@ -116,14 +117,24 @@ create table friend_status (
 create table user_friend (
 	user_id   int(11) NOT NULL,
 	friend_id int(11) NOT NULL,
-	status_id int(11) NOT NULL,
 	PRIMARY KEY (user_id, friend_id),
 	FOREIGN KEY (user_id) REFERENCES users (id),
-	FOREIGN KEY (friend_id) REFERENCES users (id),
-	FOREIGN KEY (status_id) REFERENCES friend_status (id)
+	FOREIGN KEY (friend_id) REFERENCES users (id)
 )
 	ENGINE =InnoDB
 	DEFAULT CHARSET =latin1;
+
+create table user_friend_request (
+  user_id   int(11) NOT NULL,
+  friend_id int(11) NOT NULL,
+  status_id int(11) NOT NULL,
+  PRIMARY KEY (user_id, friend_id),
+  FOREIGN KEY (user_id) REFERENCES users (id),
+  FOREIGN KEY (friend_id) REFERENCES users (id),
+  FOREIGN KEY (status_id) REFERENCES friend_status (id)
+)
+  ENGINE =InnoDB
+  DEFAULT CHARSET =latin1;
 
 create table news (
 	id           int(11)  NOT NULL AUTO_INCREMENT,
@@ -227,9 +238,11 @@ values (3, 3, now());
 insert into friend_status (id, name) values (1, 'confirmed');
 insert into friend_status (id, name) values (2, 'requested');
 
-insert into user_friend (user_id, friend_id, status_id) values (2, 1, 2);
-insert into user_friend (user_id, friend_id, status_id) values (3, 1, 2);
-insert into user_friend (user_id, friend_id, status_id) values (2, 3, 1);
+insert into user_friend (user_id, friend_id) values (2, 3);
+insert into user_friend (user_id, friend_id) values (3, 2);
+
+insert into user_friend_request (user_id, friend_id, status_id) values (2, 1, 2);
+insert into user_friend_request (user_id, friend_id, status_id) values (3, 1, 2);
 
 insert into news (id, message, date_created)
 values (1, 'The Skin Shop is now open.', '2014-11-01');
