@@ -59,9 +59,11 @@
 
         <p>Your choice of skins!</p>
 
-        <p>Quo ut movet sonet. Est et omnium imperdiet tincidunt. Illum tollit euismod ut est. Menandri accommodare vix
-            cu, no mel agam utamur salutandi, ea consulatu disputando interpretaris pro. Id vitae scripta vim, quem
-            causae detraxit ei his. Molestiae accommodare ut vim, ut est graece possit disputationi.
+        <p>League of Legends is a fast-paced, competitive online game that blends the speed
+            and intensity of an RTS with RPG elements. Two teams of powerful champions, each with
+            a unique design and playstyle, battle head-to-head across multiple battlefields and game
+            modes. With an ever-expanding roster of champions, frequent updates and a thriving tournament
+            scene, League of Legends offers endless replayability for players of every skill level..
         </p>
     </div>
     <div class="col-md-7 col-md-offset-1" style="padding: 5px">

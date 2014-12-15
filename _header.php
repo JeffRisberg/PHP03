@@ -23,7 +23,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">the Skin Shop</a>
+            <a class="navbar-brand" href="index.php">the Skin Shop</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -32,6 +32,20 @@
                 <li <?php if ($active == 'catalog') echo 'class="active"' ?>><a href="catalog.php">Catalog</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="navbar-form" role="search" method="post" action="search.php" id="search-form" name="search-form">
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                   placeholder="Search..." id="query" name="query"
+                                   value="<?php echo $search_str ?>">
+
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-success"><span
+                                        class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
                 <?php if ($b_user_logged_in) { ?> <!-- user is logged in -->
                     <?php if ($b_user_is_admin) { ?>
                         <li <?php if ($active == 'admin') echo 'class="active"' ?>>
