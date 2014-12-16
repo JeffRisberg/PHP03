@@ -1,5 +1,6 @@
-<?php include '_connect.php'; ?>
 <?php
+include '_connect.php';
+
 /**
  * Created by PhpStorm.
  * User: Brandon
