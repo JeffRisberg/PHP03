@@ -187,11 +187,11 @@ values
 	(8, 'Kalista', 'the Spear of Vengence', 3, 'http://www.mobafire.com/images/champion/icon/kalista.png', now(), now());
 
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (1, 'Classic', 2, false,
+values (1, 'Classic', 2, true,
 				'http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg',
 				now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (2, 'Exiled Morgana', 2, true,
+values (2, 'Exiled Morgana', 2, false,
 				'http://img2.wikia.nocookie.net/__cb20110112020357/leagueoflegends/images/thumb/f/f8/Morgana_ExiledSkin.jpg/1080px-Morgana_ExiledSkin.jpg',
 				now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
@@ -209,7 +209,13 @@ values (8, 'Classic', 1, true, 'skin2.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
 values (9, 'Frozen Terror Nocturn', 1, false, 'skin3.gif', now(), now());
 insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (10, 'Void', 1, false, 'skin4.gif', now(), now());
+values (10, 'Void Nocturn', 1, false, 'skin4.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (11, 'Classic', 7, true, 'skin4.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (12, 'Darkforge Jarvan IV', 7, false, 'skin4.gif', now(), now());
+insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
+values (13, 'Warring Kingdoms Jarvan IV', 7, false, 'skin4.gif', now(), now());
 
 insert into users (user_name, password, name, visibility, is_admin, last_login, date_created, last_updated)
 values ('Brandon', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 'Brandon Risberg', 1, true, '2014-11-27 14:23:45',
@@ -220,6 +226,12 @@ values ('Jeffrey', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey
 insert into users (user_name, password, name, visibility, is_admin, last_login, date_created, last_updated)
 values ('Lauren', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 'Lauren Risberg', 2, false, '2014-11-02 02:44:23',
 				'2014-10-30 02:44:09', '2014-11-03 20:06:32');
+insert into users (user_name, password, name, visibility, is_admin, last_login, date_created, last_updated)
+values ('Developer01', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 'Developer01', 1, true, '2014-11-02 02:44:23',
+        '2014-10-30 02:44:09', '2014-11-03 20:06:32');
+insert into users (user_name, password, name, avatar_img, visibility, is_admin, last_login, date_created, last_updated)
+values ('MCrowley', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 'Michael Crowley', 'usclogo.gif', 1, false, '2014-11-02 02:44:23',
+'2014-10-30 02:44:09', '2014-11-03 20:06:32');
 
 insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
 values (1, 1, 'collected', now());
@@ -227,6 +239,12 @@ insert into user_skin_collection (user_id, skin_id, ownership_status, date_creat
 values (1, 2, 'collected', now());
 insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
 values (1, 3, 'wished', now());
+insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
+values (5, 11, 'collected', now());
+insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
+values (5, 1, 'collected', now());
+insert into user_skin_collection (user_id, skin_id, ownership_status, date_created)
+values (5, 13, 'wished', now());
 
 insert into user_champion (user_id, champion_id, date_created)
 values (1, 3, now());
@@ -238,6 +256,8 @@ insert into user_champion (user_id, champion_id, date_created)
 values (2, 2, now());
 insert into user_champion (user_id, champion_id, date_created)
 values (3, 3, now());
+insert into user_champion (user_id, champion_id, date_created)
+values (5, 7, now());
 
 insert into friend_request_status (id, name) values (1, 'requested');
 insert into friend_request_status (id, name) values (2, 'confirmed');
@@ -249,6 +269,7 @@ insert into user_friend (user_id, friend_id, date_created) values (3, 2, now());
 insert into user_friend_request (user_id, friend_id, status_id, date_created, last_updated) values (2, 3, 2, now(), now());
 insert into user_friend_request (user_id, friend_id, status_id, date_created, last_updated) values (2, 1, 1, now(), now());
 insert into user_friend_request (user_id, friend_id, status_id, date_created, last_updated) values (3, 1, 1, now(), now());
+insert into user_friend_request (user_id, friend_id, status_id, date_created, last_updated) values (5, 4, 1, now(), now());
 
 insert into news (id, message, date_created)
 values (1, 'The Skin Shop is now open.', '2014-11-01');
