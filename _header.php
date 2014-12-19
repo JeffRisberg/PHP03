@@ -28,6 +28,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li <?php if ($active == 'index') echo 'class="active"' ?>><a href="index.php">Home</a></li>
+                <li <?php if ($active == 'about') echo 'class="active"' ?>><a href="about.php">About</a></li>
                 <li <?php if ($active == 'trending') echo 'class="active"' ?>><a href="trending.php">Trending</a></li>
                 <li <?php if ($active == 'catalog') echo 'class="active"' ?>><a href="catalog.php">Catalog</a></li>
             </ul>
