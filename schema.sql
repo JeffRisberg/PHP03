@@ -52,6 +52,7 @@ create table skins (
 	champion_id  int(11)      NOT NULL,
 	is_default   bit(1)       NOT NULL,
 	name         varchar(255) NOT NULL,
+	cost		 decimal(10,2)NOT NULL,
 	img_url      varchar(255) NULL,
 	date_created datetime     NOT NULL,
 	last_updated datetime     NOT NULL,
@@ -186,36 +187,36 @@ insert into champions (id, name, title, role_id, icon_img_url, date_created, las
 values
 	(8, 'Kalista', 'the Spear of Vengence', 3, 'http://www.mobafire.com/images/champion/icon/kalista.png', now(), now());
 
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (1, 'Classic', 2, true,
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (1, 'Classic', 0.0, 2, true,
 				'http://img4.wikia.nocookie.net/__cb20120912044527/leagueoflegends/images/thumb/a/a5/Morgana_OriginalSkin.jpg/1080px-Morgana_OriginalSkin.jpg',
 				now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (2, 'Exiled Morgana', 2, false,
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (2, 'Exiled Morgana', 9.35, 2, false,
 				'http://img2.wikia.nocookie.net/__cb20110112020357/leagueoflegends/images/thumb/f/f8/Morgana_ExiledSkin.jpg/1080px-Morgana_ExiledSkin.jpg',
 				now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (3, 'Blade Mistress Morgana', 2, false, 'skin1.gif', now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (4, 'Sinful Succulence Morgana', 2, false, 'skin1.gif', now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (5, 'Blackthorn Morgana', 2, false, 'skin1.gif', now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (6, 'Ghost Bride Morgana', 2, false, 'skin1.gif', now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (7, 'Victorious Morgana', 2, false, 'skin1.gif', now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (8, 'Classic', 1, true, 'skin2.gif', now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (9, 'Frozen Terror Nocturn', 1, false, 'skin3.gif', now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (10, 'Void Nocturn', 1, false, 'skin4.gif', now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (11, 'Classic', 7, true, 'skin4.gif', now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (12, 'Darkforge Jarvan IV', 7, false, 'skin4.gif', now(), now());
-insert into skins (id, name, champion_id, is_default, img_url, date_created, last_updated)
-values (13, 'Warring Kingdoms Jarvan IV', 7, false, 'skin4.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (3, 'Blade Mistress Morgana', 9.35, 2, false, 'skin1.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (4, 'Sinful Succulence Morgana', 7.50, 2, false, 'skin1.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (5, 'Blackthorn Morgana', 7.50, 2, false, 'skin1.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (6, 'Ghost Bride Morgana', 11.20, 2, false, 'skin1.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (7, 'Victorious Morgana', 2, 9.75, false, 'skin1.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (8, 'Classic', 0.0, 1, true, 'skin2.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (9, 'Frozen Terror Nocturn', 3.0, 1, false, 'skin3.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (10, 'Void Nocturn', 4.0, 1, false, 'skin4.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (11, 'Classic', 0.0, 7, true, 'skin4.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (12, 'Darkforge Jarvan IV', 5.45, 7, false, 'skin4.gif', now(), now());
+insert into skins (id, name, cost, champion_id, is_default, img_url, date_created, last_updated)
+values (13, 'Warring Kingdoms Jarvan IV', 5.45, 7, false, 'skin4.gif', now(), now());
 
 insert into users (user_name, password, name, visibility, is_admin, last_login, date_created, last_updated)
 values ('Brandon', '$2y$10$R7A7s0PWE6fQBKm66oWdQO1c4xOmYPm2ETDMwCGr9D6PXo7il/uey', 'Brandon Risberg', 1, true, '2014-11-27 14:23:45',

@@ -90,7 +90,7 @@ if (!$skin_result = mysqli_query($db_connection, $sql)) {
                         if (!$skin_id && $skin_row['is_default']) { $skin_id = $this_skin_id;}
 
                         $selected = ($this_skin_id == $skin_id ? 'selected' : '');
-                        echo "<option $selected value='$this_skin_id'>{$skin_row['name']}</option>";
+                        echo "<option $selected value='$this_skin_id'>{$skin_row['name']} - \${$skin_row['cost']}</option>";
                     }
                     ?>
                 </select>

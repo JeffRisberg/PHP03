@@ -1,7 +1,7 @@
 </div>
 
 <footer>
-    Copyright (C) 2014 MySkinList
+    Copyright (C) 2015 MySkinList
 </footer>
 
 </body>
