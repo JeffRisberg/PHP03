@@ -28,7 +28,7 @@ if ($id != null) { // Edit
     $name = $row['name'];
     $avatar_img = $row['avatar_img'];
     $visibility = $row['visibility'];
-} else { // Edit
+} else { // New
     echo '<h2>Add a New User</h2>';
 
     $name = '';

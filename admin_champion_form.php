@@ -25,7 +25,7 @@ if ($id != null) { // Edit
     $row = mysqli_fetch_array($result);
     $name = $row['name'];
     $role_id = $row['role_id'];
-} else { // Edit
+} else { // New
     echo '<h2>Add a New Champion</h2>';
 
     $name = '';
